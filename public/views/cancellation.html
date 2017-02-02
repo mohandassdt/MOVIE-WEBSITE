@@ -1,7 +1,28 @@
-<div>
-  {{ cancellation }}
-</div>
+<table clas="table">
+                 <thead>
+                 <tr>
+                 <th>Movie Title</th>
+                  <th>Year</th>
+                 </tr>
+                 </thead>
+                 <tbody>
+                 <tr>
+                    <td><input type="text" placeholder="MovieName" ng-model="movieObj.Title" /> </td>
+                     <td>    <input type="text" placeholder="year" ng-model="movieObj.Year"/>  </td>
+              <td>     <button ng-click="getData()" class="btn btn-primary">Get</button></td>
+ <td><button ng-click="addMovie()" class="btn btn-primary">Add</button><td>
+                </tr>
 
-<p>
+                      <tr ng-repeat="moviess in movieObj">
+                           <!-- <td>{{moviess.ID=$index+1}}</td> -->
+                          <td>{{moviess.Title}}</td>
+                          <td>{{moviess.Genre}}</td>
+                          <td>{{moviess.Plot}}</td>
+													<td><img src="{{moviess.Poster}}" style="width:100px;height:100px;"></td>
 
-<a href="#/booking">booking!!</a>
+<td><button ng-click="removeMovie(moviess)" class="btn btn-danger">Remove</button></td>
+                      </tr>
+                      </tbody>
+                      </table>
+                    </center>
+                </div>

@@ -1,97 +1,29 @@
-<div class="container">
-	<div class="row">
-		  <div class="col-md-6">
-          <!-- Nav tabs --><div class="card">
-            <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="active"><a href="#movies" aria-controls="movies" role="tab" data-toggle="tab">Movies</a></li>
-              <li role="presentation"><a href="#theaters" aria-controls="theaters" role="tab" data-toggle="tab">Theaters</a></li>
-              <li role="presentation"><a href="#cities" aria-controls="citis" role="tab" data-toggle="tab">Cities</a></li>
-              <li role="presentation"><a href="#showtiming" aria-controls="showtiming" role="tab" data-toggle="tab">ShowTimings</a></li> </ul>
+<form class="container" class="table" style="margin-top: 10%;">
 
-                                    <!-- Tab panes -->
-        <div class="tab-content">
-					 <div role="tabpanel" class="tab-pane active" id="movies"><table class="table">
-					             <thead>
-					                 <tr>
-					                     <th>ID</th>
-					                     <th>Name</th>
-					                     <th>Duration</th>
-					                     <th>Year</th>
-					                     <th>Categoary</th>
-					                 </tr>
-					             </thead>
-					             <tbody>
-					                 <tr>
-					                  <td><input ng-model="contact.movieID"/></td>
 
-					                     <td><input ng-model="contact.movieName"/></td>
-					                     <td><input ng-model="contact.duration"/></td>
-					                     <td><input ng-model="contact.year"/></td>
-					                     <td><input ng-model="contact.category"/></td>
 
-					                   <td><button ng-click="addMovie()" class="btn btn-primary">Add Movie</button></td>
-					                   <td><button ng-click="updateMovie()" class="btn btn-primary">Update</button></td>
+                      <td>Movie Name<input  ng-model="movieObj.Title" type=" text" /></td>
+                      <td>Year<select ng-model="movieObj.Year" >
+                      <option></option>
+                      <option value="2015">2015</option>
+                      <option value="2016">2016</option>
+                      <option value="2017">2017</option>
+                      </select></td>
+                      <td><button ng-click="get()" class="btn btn-primary">Get</button></td>
+                      <td><button ng-click="addMovie()" class="btn btn-primary">Add Movie</button></td>
+                      <td><button ng-click="updateMovie()" class="btn btn-primary">Update</button></td>
 
-					                 </tr>
-					                 <tr ng-repeat=" contact in contactlist">
-					                     <td>{{contact.movieID}}</td>
-					                     <td>{{contact.movieName}}</td>
-					                     <td>{{contact.duration}}</td>
-					                     <td>{{contact.year}}</td>
-					                     <td>{{contact.category}}</td>
-					                     <td><button ng-click="removeMovie(contact)" class="btn btn-danger">Remove</button></td>
-					                     <td><button ng-click="editMovie(contact)" class="btn btn-primary">Edit</button></td>
-					                 </tr>
-					             </tbody>
-					  </table>
-</div>
-				<div role="tabpanel" class="tab-pane" id="theaters">
-					<
-
-					<table class="table">
-					            <thead>
-					                <tr>
-					                    <th>ID</th>
-					                    <th>Name</th>
-															<th>Location</th>
-															<th>ShowTiming</th>
-
-					              </tr>
-					            </thead>
-					            <tbody>
-					                <tr>
-					                 <td><input ng-model="thtre.movieID"/></td>
-
-					                    <td><input ng-model="thtre.theaterID"/></td>
-					                    <td><input ng-model="thtre.theaterName"/></td>
-															<td><input ng-model="thtre.location"/></td>
-															<td><input ng-model="thtre.showTime"/></td>
-
-					                  <td><button ng-click="addTheater()" class="btn btn-primary">Add Movie</button></td>
-					                  <td><button ng-click="updateTheater()" class="btn btn-primary">Update</button></td>
-
-					                </tr>
-					                <tr ng-repeat=" thtre in theaterlist">
-					                    <td>{{thtre.theaterID}}</td>
-					                    <td>{{thtre.theaterName}}</td>
-					                    <td>{{thtre.location}}</td>
-					                    <td>{{thtre.showTime}}</td>
-
-					                   <td><button ng-click="removeTheater(thtre)" class="btn btn-danger">Remove</button></td>
-					                    <td><button ng-click="editTheater(thtre)" class="btn btn-primary">Edit</button></td>
-					                </tr>
-					            </tbody>
-					 </table>
-
-				</div>
-        <div role="tabpanel" class="tab-pane" id="messages">Lorem Ipsum is simply dummy text of the printi
-
-					, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</div>
-          <div role="tabpanel" class="tab-pane" id="settings">Lorem Ipsum is simply dum
-						entially unchanged. It
-						was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passage..</div>
-          </div>
-</div>
-      </div>
-	</div>
-</div>
+                 <!-- </tbody> -->
+<table>
+                <tr ng-repeat="movi in movilist">
+                    <td>{{movi.Title}}</td>
+                      <td>{{movi.Year}}</td>
+                       <td>{{movi.Language}}</td>
+                        <td>{{movi.Poster}}</td>
+                         <!-- <td>{{movi.moviePlot}}</td>
+                          <td>{{movi.moviePoster}}</td> -->
+                    <td><button ng-click="removeMovie(movi)" class="btn btn-danger">Remove</button></td>
+                    <td><button ng-click="editMovie(movi)" class="btn btn-primary">Edit</button></td>
+                </tr>
+</table>
+  </form>
