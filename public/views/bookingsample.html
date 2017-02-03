@@ -1,0 +1,29 @@
+<form class="container" class="table" style="margin-top: 10%;">
+
+
+
+                      <td>Movie Name<input  ng-model="movieObj.Title" type=" text" /></td>
+                      <td>Year<select ng-model="movieObj.Year" >
+                      <option></option>
+                      <option value="2015">2015</option>
+                      <option value="2016">2016</option>
+                      <option value="2017">2017</option>
+                      </select></td>
+                      <td><button ng-click="get()" class="btn btn-primary">Get</button></td>
+                      <td><button ng-click="addMovie()" class="btn btn-primary">Add Movie</button></td>
+                      <td><button ng-click="updateMovie()" class="btn btn-primary">Update</button></td>
+
+                 <!-- </tbody> -->
+<table>
+                <tr ng-repeat="movi in movilist">
+                    <td>{{movi.Title}}</td>
+                      <td>{{movi.Year}}</td>
+                       <td>{{movi.Language}}</td>
+                        <td>{{movi.Poster}}</td>
+                         <!-- <td>{{movi.moviePlot}}</td>
+                          <td>{{movi.moviePoster}}</td> -->
+                    <td><button ng-click="removeMovie(movi)" class="btn btn-danger">Remove</button></td>
+                    <td><button ng-click="editMovie(movi)" class="btn btn-primary">Edit</button></td>
+                </tr>
+</table>
+  </form>
