@@ -1,21 +1,19 @@
-
 var express = require('express');
 var router = express.Router();
-bodyParser = require('body-parser'),
+var bodyParser = require('body-parser'); //parses information from POST
 
-
-router.use(bodyParser.urlencoded({ extended: true }))
+router.use(bodyParser.urlencoded({ extended: true }));
 
 
 var mongoose = require('mongoose');
 
 var theaterSchema = mongoose.Schema({
-  theaterID:String;
-  theaterName: String,
-  location:String,
- showTime:Number
+  TheaterID:String,
+  TheaterName: String,
+  location: String,
+ showTime:String
  });
-var Theater = mongoose.model('Theater',theaterSchema, 'Theater');
+var Theater = mongoose.model('Theater',theaterSchema,'theaterTable');
 
 
 router.get('/theater', function (req, res) {
@@ -27,7 +25,7 @@ router.get('/theater', function (req, res) {
 });
 
 router.get('/theater/:id', function (req, res) {
-    console.log("REACHED GET ID FUNCTION ON SERVER");
+    console.log("REACHED GET ID FUNCTION ON dass SERVER");
      Theater.find({_id: req.params.id}, function (err, docs) {
          res.json(docs);
 
@@ -36,13 +34,13 @@ router.get('/theater/:id', function (req, res) {
 
 router.post('/theater', function(req, res){
   console.log(req.body);
-  var id = req.body.theaterID;
-  var name = req.body.theaterName;
+  var id = req.body.TheaterID;
+  var name = req.body.TheaterName;
   var loc=req.body.location;
   var time=req.body.showTime;
-var theater1 = new Movie({
-  theaterID:id,
-  theaterName:name,
+var theater1 = new Theater({
+  TheaterID:id,
+  TheaterName:name,
   location:loc,
   showTime:time
 
@@ -70,11 +68,12 @@ router.put('/theater/:id', function(req, res){
       res.json(data);
     });
 })
-
 router.use(function(req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
+
+
 
 module.exports = router;

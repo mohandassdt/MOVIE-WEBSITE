@@ -1,22 +1,22 @@
 
 var express = require('express');
 var router = express.Router();
-bodyParser = require('body-parser'),
+var bodyParser = require('body-parser');
 
 
-router.use(bodyParser.urlencoded({ extended: true }))
+router.use(bodyParser.urlencoded({ extended: true }));
 
 
 var mongoose = require('mongoose');
 
 var citySchema = mongoose.Schema({
-  cityID:String;
-  cityName: String
+  cityID:String,
+  cityName:String
  });
-var City = mongoose.model('City',citySchema, 'City');
+var City = mongoose.model('City',citySchema, 'cityTable');
 
 
-router.get('/city', function (req, res) {
+router.get('/cty', function (req, res) {
     console.log("REACHED GET FUNCTION ON SERVER");
     City.find({}, function (err, docs) {
          res.json(docs);
@@ -24,7 +24,7 @@ router.get('/city', function (req, res) {
     });
 });
 
-router.get('/city/:id', function (req, res) {
+router.get('/cty/:id', function (req, res) {
     console.log("REACHED GET ID FUNCTION ON SERVER");
      City.find({_id: req.params.id}, function (err, docs) {
          res.json(docs);
@@ -32,11 +32,11 @@ router.get('/city/:id', function (req, res) {
     });
 });
 
-router.post('/city', function(req, res){
+router.post('/cty', function(req, res){
   console.log(req.body);
   var id = req.body.cityID;
   var name = req.body.cityName;
-var city1 = new Movie({
+var city1 = new City({
     cityID:id,
     cityName:name
 });
@@ -49,14 +49,14 @@ var city1 = new Movie({
 
   })
 
-router.delete('/city/:id', function(req, res){
+router.delete('/cty/:id', function(req, res){
    console.log("REACHED Delete FUNCTION ON SERVER");
       City.remove({_id:req.params.id}, function(err, docs){
         res.json(docs);
     });
 })
 
-router.put('/city/:id', function(req, res){
+router.put('/cty/:id', function(req, res){
     console.log("REACHED PUT");
     console.log(req.body);
   City.findOneAndUpdate({_id:req.params.id}, req.body, function (err, data) {
