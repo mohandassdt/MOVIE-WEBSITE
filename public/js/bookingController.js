@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function($scope, $http) {
+module.exports = function($scope, $http,$log) {
   $scope.booking = 'booking';
 
   // var refresh = function () {
@@ -52,77 +52,83 @@ module.exports = function($scope, $http) {
 
 
 
-var movieObj={};
-$scope.get= function(){
-  console.log('Hi Welcome');
-   $http.get('http://www.omdbapi.com/?t='+$scope.movieObj.Title+'&y='+$scope.movieObj.Year+'&plot=full&r=json').success(function (response){
+var refresh = function() {
+    $http.get('/movie/movie').success(function(response) {
+        console.log('READ IS SUCCESSFUL');
+        $scope.moviList = response;
+        $scope.movi = "";
+    });
+};
+
+refresh();
+
+$scope.addMovie = function(movi) {
+    $http.get(`http://www.omdbapi.com/?t=${movi.moviTitle}&plot=short&r=json`).success(function(response) {
+        //console.log(response);
+        var movieObj = {};
+        for (var key in response) {
+            if (key == 'Title' || key == 'Year' || key == 'Language' || key == 'Poster' || key == 'Genre' || key == 'Director' || key == 'Actors' || key == 'Plot') {
+                movieObj[key] = response[key];
+
+            }
+        }
+       // $http.defaults.headers.post["Content-Type"] = "application/json";
+
+        $http({
+                method: 'POST',
+                url: '/movie/movie',
+                 headers: {'Content-Type': 'application/json'},
+                data: movieObj
+            })
+            .then(function(response) {
+                console.log(response);
+                console.log("CREATE IS SUCCESSFUL");
+                $log.info(response);
+                refresh();
+            });
+
+
+        // var serviceName = 'movi'
+        // $http.post('/movie/addMovie', movieObj).success(function(response) {
+        //     console.log(response);
+        //     console.log("CREATE IS SUCCESSFUL");
+        //     refresh();
+        // });
+
+    });
+    console.log($scope.movi);
+
+};
+
+$scope.removeMovie = function(movie) {
+    //console.log(id);
+    $http.delete('/movie/movie/' + movie._id).success(function(response) {
         console.log(response);
- for(var key in response)
- {
-  if(key=='Title'|| key=='Year' || key== 'Language' || key== 'Poster' || key== 'Genre' || key== 'Director' || key== 'Actors' || key== 'Plot' || key== 'imdbRating')
-      {
-      movieObj[key] = response[key];
-      }
+        console.log('DELETED SUCCESSFULLY');
+        refresh();
+    });
+};
 
-    console.log(movieObj);
+$scope.editMovie = function(movie) {
+    $http.get('/movie/movie/' + movie._id).success(function(response) {
+        $scope.movi = response[0];
+    });
+};
 
-      }
-           refresh5();
-  });
+$scope.updateMovie = function() {
+    console.log("REACHED UPDATE");
+    console.log($scope.movi._id);
+    $http.put('/movie/movie/' + $scope.movi._id, $scope.movi).success(function(response) {
+        console.log(response);
+        refresh();
+    })
 }
-
-var refresh5 = function () {
-                            $http.get('/movie/movie').success(function (response) {
-                                console.log('READ IS SUCCESSFUL');
-                                $scope.movieObj = response;
-                                $scope.moviess = "";
-                            });
-                        };
-
-                    refresh5();
-
-
-
-
-                          $scope.addMovie = function () {
-                              console.log(movieObj);
-                              $http.post('/movie/movie',movieObj).success(function (response) {
-                                  console.log(response);
-                                  console.log("CREATE IS SUCCESSFUL");
-                                  refresh5();
-                              });
-                          };
-
-    // $scope.removeMovie = function (id) {
-    //     console.log(id);
-    //     $http.delete('/movie/movie/' + id._id).success(function (response) {
-    //         console.log(response);
-    //         console.log('DELETED SUCCESSFULLY');
-    //         refresh();
-    //     });
-    // };
-    //
-    // $scope.editMovie = function (id) {
-    //      $http.get('/movie/movie/' + id._id).success(function (response) {
-    //         $scope.movi = response[0];
-    //     });
-    // };
-    //
-    // $scope.updateMovie = function () {
-    //     console.log("REACHED UPDATE");
-    //     console.log($scope.movi._id);
-    //     $http.put('/movie/movie/' + $scope.movi._id, $scope.movi).success(function (response) {
-    //         console.log(response);
-    //         refresh();
-    //     })
-    // }
-
 //theater controller.............
 
 
 var refreshTheat = function () {
-      $http.get('/theater/get').success(function (response) {
-          console.log('READ IS SUCCESSFUL');
+      $http.get('/theater/theater').success(function (response) {
+          console.log('theater READ IS SUCCESSFUL');
           $scope.thtrelist = response;
           $scope.thtre = "";
       });
@@ -134,7 +140,7 @@ var refreshTheat = function () {
       console.log($scope.thtre);
       $http.post('/theater/theater', $scope.thtre).success(function (response) {
           console.log(response);
-          console.log("CREATE IS SUCCESSFUL");
+          console.log("theater CREATE IS SUCCESSFUL");
           refreshTheat();
       });
   };
@@ -156,7 +162,7 @@ var refreshTheat = function () {
       console.log(id);
       $http.delete('/theater/theater/' + id._id).success(function (response) {
           console.log(response);
-          console.log('DELETED SUCCESSFULLY');
+          console.log('theater DELETED SUCCESSFULLY');
           refreshTheat();
       });
   };
@@ -168,7 +174,7 @@ var refreshTheat = function () {
   };
 
   $scope.updateTheater = function () {
-      console.log("REACHED UPDATE");
+      console.log("theater REACHED UPDATE");
       console.log($scope.thtre._id);
       $http.put('/theater/theater/' + $scope.thtre._id, $scope.thtre).success(function (response) {
           console.log(response);
@@ -228,7 +234,7 @@ var refreshLocat = function () {
 
 //showtime controllerr..............................
 
-var refreshShow = function () {
+var refreshSho = function () {
       $http.get('/showt/showt').success(function (response) {
           console.log('READ IS SUCCESSFUL');
           $scope.timlist = response;
@@ -236,14 +242,18 @@ var refreshShow = function () {
       });
   };
 
-  refreshShow();
+  refreshSho();
 
   $scope.addShow = function () {
+//     var app = angular.module('movieApp', []);
+// app.controller('myCtrl', function($scope) {
+//     $scope.count = 0;
+// });
       console.log($scope.tim);
       $http.post('/showt/showt', $scope.tim).success(function (response) {
           console.log(response);
           console.log("CREATE IS SUCCESSFUL");
-          refreshShow();
+          refreshSho();
       });
   };
 
@@ -252,7 +262,7 @@ var refreshShow = function () {
       $http.delete('/showt/showt/' + id._id).success(function (response) {
           console.log(response);
           console.log('DELETED SUCCESSFULLY');
-          refreshShow();
+          refreshSho();
       });
   };
 
@@ -267,7 +277,7 @@ var refreshShow = function () {
       console.log($scope.tim._id);
       $http.put('/showt/showt/' + $scope.tim._id, $scope.tim).success(function (response) {
           console.log(response);
-          refreshShow();
+          refreshSho();
       })
   }
 
