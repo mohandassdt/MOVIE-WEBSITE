@@ -9,6 +9,7 @@
   height: 100%;
   color: #e1ffff;
   margin-top:15px;
+  overflow: hidden;
 }
 .nav-side-menu .brand {
   background-color: #23282e;
@@ -19,6 +20,7 @@
 }
 .nav-side-menu .toggle-btn {
   display: none;
+
 }
 .nav-side-menu ul,
 .nav-side-menu li {
@@ -398,7 +400,7 @@
 	opacity:0;
 	visibility:hidden;
 }
-.spacialCheckbox label input[type="checkbox"] + i{
+/*.spacialCheckbox label input[type="checkbox"] + i{
 	background:url(http://skyrites.com/projects/spaciux/images/checkbox.jpg) no-repeat left top;
 	width:25px;
 	height:25px;
@@ -408,10 +410,10 @@
 	top:0;
 	z-index:1;
 
-}
-.spacialCheckbox label input[type="checkbox"]:checked + i{
+}*/
+/*.spacialCheckbox label input[type="checkbox"]:checked + i{
 	background:url(http://skyrites.com/projects/spaciux/images/checkbox.jpg) no-repeat left bottom;
-}
+}*/
 </style>
 <div class="container">
           <div class="row">
@@ -427,42 +429,42 @@
                             <ul class="menu-content collapse in" id="menu-content">
 
 
-                                <li class="collapsed active" data-target="#moviedetail" data-toggle="collapse">
-                                  <i class=""><img src="http://skyrites.com/projects/spaciux/images/fa-user1.png" alt=""></i> <strong style="color:black">Add Movies</strong> <span class="arrow"></span>
+                                <li class="collapsed active" data-target="#showdetail" data-toggle="collapse">
+                                   <span class="glyphicon glyphicon-time" style="color:black"></span> <strong style="color:black">Add Show</strong> <span class="arrow"></span>
                                 </li>
 
-                                <ul id="moviedetail" class="sub-menu collapse fade">
-                                    <li class="active">
-                                      <form class="container" class="table">
-                                                          <td>Movie Name<input  ng-model="movieObj.Title" type=" text" placeholder="Title" /></td>
-                                                            <td>Year<select ng-model="movieObj.Year" placeholder="Year">
-                                                            <option></option>
-                                                            <option value="2015">2015</option>
-                                                            <option value="2016">2016</option>
-                                                            <option value="2017">2017</option>
-                                                            </select></td>
-                                                            <td><button ng-click="get()" class="btn btn-primary">Get</button></td>
-                                                            <td><button ng-click="addMovie()" class="btn btn-primary">Add Movie</button></td>
-                                                            <td><button ng-click="updateMovie()" class="btn btn-primary">Update</button></td>
 
-                                                       <!-- </tbody> -->
-                                      <table>
-                                                      <tr ng-repeat="movi in movilist">
-                                                          <td>{{movi.Title}}</td>
-                                                            <td>{{movi.Year}}</td>
-                                                             <td>{{movi.Language}}</td>
-                                                              <td>{{movi.Poster}}</td>
-                                                               <!-- <td>{{movi.moviePlot}}</td>
-                                                                <td>{{movi.moviePoster}}</td> -->
-                                                          <td><button ng-click="removeMovie(movi)" class="btn btn-danger">Remove</button></td>
-                                                          <td><button ng-click="editMovie(movi)" class="btn btn-primary">Edit</button></td>
-                                                      </tr>
-                                      </table>
-                                        </form>
-</li>
 
-                                    <!-- <li><a href="#">Carpenter</a></li> -->
-                                </ul>
+                                <ul id="showdetail" class="sub-menu collapse">
+                                <li class="active">	<table class="table">
+                                              <thead>
+                                                  <tr>
+                                                      <th>Show ID</th>
+                                                      <th>Show Name</th>
+
+
+                                                </tr>
+                                              </thead>
+                                              <tbody>
+                                                  <tr>
+
+                                                     <td><input ng-model="tim.showID"/></td>
+                                                      <td><input ng-model="tim.showTime"/></td>
+
+                                                    <td><button ng-click="addShow()" class="btn btn-primary">Add Time</button></td>
+                                                    <td><button ng-click="updateShow()" class="btn btn-primary">Update</button></td>
+
+                                                  </tr>
+                                                  <tr ng-repeat="tim in timlist">
+                                                      <td>{{tim.showID}}</td>
+                                                      <td>{{tim.showTime}}</td>
+
+                                                 <td><button ng-click="removeShow(tim)" class="btn btn-danger">Remove</button></td>
+                                                      <td><button ng-click="editShow(tim)" class="btn btn-primary">Edit</button></td>
+                                                  </tr>
+                                              </tbody>
+                                            </table></li>
+                                          </ul>
                                 <!-- <script>
                                 var $Form = $('form'), $Container = $('#container');
                                 $Container.hide();
@@ -486,121 +488,157 @@
                                 </script> -->
 
 
-                                  <li class="collapsed" data-target="#theaterdetail" data-toggle="collapse">
+                                  <li class="collapsed" data-target="#citydetail" data-toggle="collapse">
                                   <!-- <a href="#"> -->
-                                    <i class=""><img src="http://skyrites.com/projects/spaciux/images/fa-user2.png" alt=""></i> <strong style="color:black">Add Theaters</strong> <span class="arrow"></span></a>
+                                    <span class="glyphicon glyphicon-map-marker" style="color:black"></span> <strong style="color:black">Add City</strong> <span class="arrow"></span></a>
                                 </li>
 
-                                <ul id="theaterdetail" class="sub-menu collapse">
-                                  <li class="active">	<table class="table">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Theater ID</th>
-                                                        <th>Theater Name</th>
-                                                        <th>City</th>
-                                                        <th>ShowTiming</th>
+                                                                                                          <ul id="citydetail" class="sub-menu collapse">
+                                                                                                                <li class="active">	<table class="table">
+                                                                                                                              <thead>
+                                                                                                                                  <tr>
+                                                                                                                                      <th>City ID</th>
+                                                                                                                                      <th>City Name</th>
 
-                                                  </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
 
-                                                       <td><input ng-model="thtre.TheaterID"/></td>
-                                                        <td><input ng-model="thtre.TheaterName"/></td>
-                                                        <td><input ng-model="thtre.location"/></td>
-                                                        <td><input ng-model="thtre.showTime"/></td>
+                                                                                                                                </tr>
+                                                                                                                              </thead>
+                                                                                                                              <tbody>
+                                                                                                                                  <tr>
 
-                                                      <td><button ng-click="addTheater()" class="btn btn-primary">Add Theater</button></td>
-                                                      <td><button ng-click="updateTheater()" class="btn btn-primary">Update</button></td>
+                                                                                                                                     <td><input ng-model="loc.cityID"/></td>
+                                                                                                                                      <td><input ng-model="loc.cityName"/></td>
 
-                                                    </tr>
-                                                    <tr ng-repeat=" thtre in thtrelist">
-                                                        <td>{{thtre.TheaterID}}</td>
-                                                        <td>{{thtre.TheaterName}}</td>
-                                                        <td>{{thtre.location}}</td>
-                                                        <td>{{thtre.showTime}}</td>
+                                                                                                                                    <td><button ng-click="addCity()" class="btn btn-primary">Add City</button></td>
+                                                                                                                                    <td><button ng-click="updateCity()" class="btn btn-primary">Update</button></td>
 
-                                                       <td><button ng-click="removeTheater(thtre)" class="btn btn-danger">Remove</button></td>
-                                                        <td><button ng-click="editTheater(thtre)" class="btn btn-primary">Edit</button></td>
-                                                    </tr>
-                                                </tbody>
-                                              </table></li></ul>
+                                                                                                                                  </tr>
+                                                                                                                                  <tr ng-repeat="loc in loclist">
+                                                                                                                                      <td>{{loc.cityID}}</td>
+                                                                                                                                      <td>{{loc.cityName}}</td>
 
-                                                                                <li class="collapsed" data-target="#citydetail" data-toggle="collapse">
+                                                                                                                                 <td><button ng-click="removeCity(loc)" class="btn btn-danger">Remove</button></td>
+                                                                                                                                      <td><button ng-click="editCity(loc)" class="btn btn-primary">Edit</button></td>
+                                                                                                                                  </tr>
+                                                                                                                              </tbody>
+                                                                                                                            </table></li>
+                                                                                                                          </ul>
+
+
+
+
+
+
+
+
+                                                                                <li class="collapsed" data-target="#theaterdetail" data-toggle="collapse">
                                                                                 <!-- <a href="#"> -->
-                                                                                  <i class=""><img src="http://skyrites.com/projects/spaciux/images/fa-user3.png" alt=""></i> <strong style="color:black">Add City</strong> <span class="arrow"></span></a>
+                                                                            <span class="glyphicon glyphicon-equalizer" style="color:black"></span> <strong style="color:black">Add Theaters</strong> <span class="arrow"></span></a>
                                                                               </li>
-
-                                                                              <ul id="citydetail" class="sub-menu collapse">
+                                                                              <ul id="theaterdetail" class="sub-menu collapse">
                                                                                 <li class="active">	<table class="table">
                                                                                               <thead>
                                                                                                   <tr>
-                                                                                                      <th>City ID</th>
-                                                                                                      <th>City Name</th>
-
+                                                                                                      <th>Theater ID</th>
+                                                                                                      <th>Theater Name</th>
+                                                                                                      <th>City</th>
+                                                                                                      <th>Show time</th>
 
                                                                                                 </tr>
                                                                                               </thead>
                                                                                               <tbody>
                                                                                                   <tr>
 
-                                                                                                     <td><input ng-model="loc.cityID"/></td>
-                                                                                                      <td><input ng-model="loc.cityName"/></td>
+                                                                                                     <td><input ng-model="thtre.TheaterID"/></td>
+                                                                                                      <td><input ng-model="thtre.TheaterName"/></td>
+                                                                                                      <td>
+                                                                                                        <div class="form-group">
 
-                                                                                                    <td><button ng-click="addCity()" class="btn btn-primary">Add City</button></td>
-                                                                                                    <td><button ng-click="updateCity()" class="btn btn-primary">Update</button></td>
+                                                                                                           <select class="form-control" ng-model="thtre.location">
+                                                                                                             <option ng-repeat="loc in loclist">{{loc.cityName}}</option>
+
+                                                                                                           </select></div></td>
+                                                                                                      <!-- <td><input /> -->
+                                                                                                      <td>  <div class="form-group">
+
+                                                                                                         <select class="form-control" ng-model="thtre.showTime">
+                                                                                                           <option ng-repeat="tim in timlist">{{tim.showTime}}</option>
+                                                                                                           <!-- <option>2</option>
+                                                                                                           <option>3</option>
+                                                                                                           <option>4</option> -->
+                                                                                                         </select></div></td>
+
+
+                                                                                                    <td><button ng-click="addTheater()" class="btn btn-primary">Add Theater</button></td>
+                                                                                                    <td><button ng-click="updateTheater()" class="btn btn-primary">Update</button></td>
 
                                                                                                   </tr>
-                                                                                                  <tr ng-repeat="loc in loclist">
-                                                                                                      <td>{{loc.cityID}}</td>
-                                                                                                      <td>{{loc.cityName}}</td>
+                                                                                                  <tr ng-repeat="thtre in thtrelist">
+                                                                                                      <td>{{thtre.TheaterID}}</td>
+                                                                                                      <td>{{thtre.TheaterName}}</td>
+                                                                                                      <td>{{thtre.location}}</td>
+                                                                                                      <td>{{thtre.showTime}}</td>
 
-                                                                                                 <td><button ng-click="removeCity(loc)" class="btn btn-danger">Remove</button></td>
-                                                                                                      <td><button ng-click="editCity(loc)" class="btn btn-primary">Edit</button></td>
+                                                                                                     <td><button ng-click="removeTheater(thtre)" class="btn btn-danger">Remove</button></td>
+                                                                                                      <td><button ng-click="editTheater(thtre)" class="btn btn-primary">Edit</button></td>
                                                                                                   </tr>
                                                                                               </tbody>
-                                                                                            </table></li>
-                                                                                          </ul>
+                                                                                            </table></li></ul>
+
+
                                     <!-- <li><a href="#">Full Interior Service</a></li><
                                     <li><a href="#">Design only</a></li>
                                     <li><a href="#">Execution only</a></li>
                                     <li><a href="#">Other services</a></li> -->
 
-                                    <li class="collapsed" data-target="#showdetail" data-toggle="collapse">
+                                    <li class="collapsed" data-target="#moviedetail" data-toggle="collapse">
                                     <!-- <a href="#"> -->
-                                      <i class=""><img src="http://skyrites.com/projects/spaciux/images/fa-user4.png" alt=""></i> <strong style="color:black">Add Show time</strong> </a>
+                                      <span class="glyphicon glyphicon-facetime-video" style="color:black"></span> <strong style="color:black">Add Movies</strong> </a>
                                     </li>
+                                    <ul id="moviedetail" class="sub-menu collapse fade">
+                                        <li class="active">
+                                          <form class="container" class="table">
+                                            <table>
+                                              <tbody>
+                                                <tr>
+                                                              <td>Movie Name<input ng-model="movi.moviTitle" placeholder="Title"/></td>
+                                                                <!-- <td>Year<select ng-model="movi.moviYear" placeholder="Year">
+                                                                <option></option>
+                                                                <option value="2015">2015</option>
+                                                                <option value="2016">2016</option>
+                                                                <option value="2017">2017</option>
+                                                                </select></td> -->
+                                                                <!-- <td><button ng-click="get()" class="btn btn-primary">Get</button></td> -->
+                                                                <td><button ng-click="addMovie(movi)" class="btn btn-primary">Add </button></td>
 
-                                    <ul id="showdetail" class="sub-menu collapse">
-                                    <li class="active">	<table class="table">
-                                                  <thead>
-                                                      <tr>
-                                                          <th>Show ID</th>
-                                                          <th>Show Name</th>
+                                                                <td><button ng-click="updateMovie()" class="btn btn-primary">Update</button></td></tr>
+
+                                                           <!-- </tbody> -->
+
+                                                          <tr ng-repeat="m in moviList">
+                                                              <td>{{m.moviTitle}}</td>
+                                                                <td>{{m.moviYear}}</td>
+                                                                 <td>{{m.moviLanguage}}</td>
+                                                                  <!-- <td>{{m.moviPoster}}</td> -->
+                                                                  <td><img src="{{m.moviPoster}}" style="width:100px;height:100px;"></td>
+                                                                   <!-- <td>{{movi.moviePlot}}</td>
+                                                                    <td>{{movi.moviePoster}}</td> -->
+                                                              <td><button ng-click="removeMovie(m)" class="btn btn-danger">Remove</button></td>
+                                                              <td><button ng-click="editMovie(m)" class="btn btn-primary">Edit</button></td>
+                                                          </tr>
+                                                        </tbody>
+                                                      </table>
 
 
-                                                    </tr>
-                                                  </thead>
-                                                  <tbody>
-                                                      <tr>
 
-                                                         <td><input ng-model="tim.showID"/></td>
-                                                          <td><input ng-model="tim.showName"/></td>
 
-                                                        <td><button ng-click="addShow()" class="btn btn-primary">Add Time</button></td>
-                                                        <td><button ng-click="updateShow()" class="btn btn-primary">Update</button></td>
+                                            </form>
+    </li>
 
-                                                      </tr>
-                                                      <tr ng-repeat="tim in timlist">
-                                                          <td>{{tim.showID}}</td>
-                                                          <td>{{tim.showName}}</td>
+                                        <!-- <li><a href="#">Carpenter</a></li> -->
+                                    </ul>
 
-                                                     <td><button ng-click="removeShow(tim)" class="btn btn-danger">Remove</button></td>
-                                                          <td><button ng-click="editShow(tim)" class="btn btn-primary">Edit</button></td>
-                                                      </tr>
-                                                  </tbody>
-                                                </table></li>
-                                              </ul>
+
                                     <!-- <li><a href="#">Full Interior Service</a></li
 
 
