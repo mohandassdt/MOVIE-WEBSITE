@@ -11,6 +11,7 @@ var theaterSchema = mongoose.Schema({
   TheaterID:String,
   TheaterName: String,
   location: String,
+  // showTimemodel:String,
  showTime:String
  });
 var Theater = mongoose.model('Theater',theaterSchema,'theaterTable');
@@ -37,11 +38,13 @@ router.post('/theater', function(req, res){
   var id = req.body.TheaterID;
   var name = req.body.TheaterName;
   var loc=req.body.location;
+  // var model=req.body.showTimemodel;
   var time=req.body.showTime;
 var theater1 = new Theater({
   TheaterID:id,
   TheaterName:name,
   location:loc,
+  // showTimemodel:model,
   showTime:time
 
 });
