@@ -414,7 +414,9 @@
 /*.spacialCheckbox label input[type="checkbox"]:checked + i{
 	background:url(http://skyrites.com/projects/spaciux/images/checkbox.jpg) no-repeat left bottom;
 }*/
+
 </style>
+
 <div class="container">
           <div class="row">
 
@@ -439,8 +441,8 @@
                                 <li class="active">	<table class="table">
                                               <thead>
                                                   <tr>
-                                                      <th>Show ID</th>
-                                                      <th>Show Name</th>
+
+                                                      <th>Show time</th>
 
 
                                                 </tr>
@@ -448,7 +450,7 @@
                                               <tbody>
                                                   <tr>
 
-                                                     <td><input ng-model="tim.showID"/></td>
+
                                                       <td><input ng-model="tim.showTime"/></td>
 
                                                     <td><button ng-click="addShow()" class="btn btn-primary">Add Time</button></td>
@@ -456,7 +458,7 @@
 
                                                   </tr>
                                                   <tr ng-repeat="tim in timlist">
-                                                      <td>{{tim.showID}}</td>
+
                                                       <td>{{tim.showTime}}</td>
 
                                                  <td><button ng-click="removeShow(tim)" class="btn btn-danger">Remove</button></td>
@@ -497,7 +499,7 @@
                                                                                                                 <li class="active">	<table class="table">
                                                                                                                               <thead>
                                                                                                                                   <tr>
-                                                                                                                                      <th>City ID</th>
+
                                                                                                                                       <th>City Name</th>
 
 
@@ -506,7 +508,7 @@
                                                                                                                               <tbody>
                                                                                                                                   <tr>
 
-                                                                                                                                     <td><input ng-model="loc.cityID"/></td>
+
                                                                                                                                       <td><input ng-model="loc.cityName"/></td>
 
                                                                                                                                     <td><button ng-click="addCity()" class="btn btn-primary">Add City</button></td>
@@ -514,7 +516,7 @@
 
                                                                                                                                   </tr>
                                                                                                                                   <tr ng-repeat="loc in loclist">
-                                                                                                                                      <td>{{loc.cityID}}</td>
+
                                                                                                                                       <td>{{loc.cityName}}</td>
 
                                                                                                                                  <td><button ng-click="removeCity(loc)" class="btn btn-danger">Remove</button></td>
@@ -539,7 +541,7 @@
                                                                                 <li class="active">	<table class="table">
                                                                                               <thead>
                                                                                                   <tr>
-                                                                                                      <th>Theater ID</th>
+
                                                                                                       <th>Theater Name</th>
                                                                                                       <th>City</th>
                                                                                                       <th>Show time</th>
@@ -549,7 +551,7 @@
                                                                                               <tbody>
                                                                                                   <tr>
 
-                                                                                                     <td><input ng-model="thtre.TheaterID"/></td>
+
                                                                                                       <td><input ng-model="thtre.TheaterName"/></td>
                                                                                                       <td>
                                                                                                         <div class="form-group">
@@ -561,12 +563,24 @@
                                                                                                       <!-- <td><input /> -->
                                                                                                       <td>  <div class="form-group">
 
-                                                                                                         <select class="form-control" ng-model="thtre.showTime">
+                                                                                                         <!-- <select class="form-control" ng-model="thtre.showTime"> -->
+                                                                                                           <select class="selectpicker" ng-model="thtre.showTime" multiple="multiple">
                                                                                                            <option ng-repeat="tim in timlist">{{tim.showTime}}</option>
+                                                                                                         </select></div></td>
+                                                                                                         <!-- <td><button onclick="click()">addtime</button></td>
+                                                                                                            <td><div id="demo"> <select class="selectpicker" multiple="multiple" ng-model="thtre.showTime">
+                                                                                                               <option>{{timing}}</option>
+                                                                                                               </select></div></td>
+
+                                                                                                               <script>
+                                                                                                               function click() {
+                                                                                                                   document.getElementById("demo").innerHTML = {{timing}};
+                                                                                                               }
+                                                                                                               </script> -->
                                                                                                            <!-- <option>2</option>
                                                                                                            <option>3</option>
                                                                                                            <option>4</option> -->
-                                                                                                         </select></div></td>
+
 
 
                                                                                                     <td><button ng-click="addTheater()" class="btn btn-primary">Add Theater</button></td>
@@ -574,7 +588,7 @@
 
                                                                                                   </tr>
                                                                                                   <tr ng-repeat="thtre in thtrelist">
-                                                                                                      <td>{{thtre.TheaterID}}</td>
+
                                                                                                       <td>{{thtre.TheaterName}}</td>
                                                                                                       <td>{{thtre.location}}</td>
                                                                                                       <td>{{thtre.showTime}}</td>
@@ -637,6 +651,88 @@
 
                                         <!-- <li><a href="#">Carpenter</a></li> -->
                                     </ul>
+
+
+
+
+
+                                                                                      <li class="collapsed" data-target="#mapping" data-toggle="collapse">
+                                                                                                                    <!-- <a href="#"> -->
+                                                                          <span class="glyphicon glyphicon-equalizer" style="color:black"></span> <strong style="color:black">Mapping</strong> <span class="arrow"></span></a>
+                                                                                  </li>
+                                                                            <ul id="mapping" class="sub-menu collapse">
+                                                                                      <li class="active">	<table class="table">
+                                                                                                        <thead>
+                                                                                                        <tr>
+                                                                                                            <th>Movie</th>
+                                                                                                                <th>City</th>
+                                                                                                          <th>Theater</th>
+                                                                                                                    <th>Show time</th>
+                                                                                                    <th>From</th>
+                                                                                                            <th>To</th>
+
+                                                                                                            </tr>
+                                                                                          </thead>
+                                                                                      <tbody>
+                                                                                                    <tr>
+
+                                                                                       <td>
+                                                                                           <div class="form-group">
+
+                                                                                            <select class="form-control" ng-model="map.Film">
+                                                                                        <option ng-repeat="m in moviList">{{m.moviTitle}}</option>
+
+                                                                                            </select></div></td>
+
+                                                                                             <td>
+                                                                                                <div class="form-group">
+
+                                                                                             <select class="form-control" ng-model="map.City">
+                                                                                                   <option ng-repeat="loc in loclist">{{loc.cityName}}</option>
+                                                                                             </select></div></td>
+                                                                                             <td>
+                                                                                                <div class="form-group">
+
+                                                                                             <select id="thname" class="form-control" ng-model="map.Hall" >
+
+                                                                                                   <option ng-repeat="th in thtrelist |filter:map.City">{{th.TheaterName}}</option>
+                                                                                             </select></div></td>
+                                                                                             <!-- <td>  <div class="form-group">
+
+                                                                                                  <select class="form-control" ng-model="map.ShowTime">
+                                                                                              <option ng-repeat="t in timlist | filter:map.Hall" value="{{t.showTime}}">{{t.showTime}}</option>
+
+                                                                                            </select></div></td> -->
+                                                                                            <td>
+<select ng-model="map.ShowTime"><option ng-repeat="t in thtrelist | filter:map.Hall" value="{{t.showTime}}">{{t.showTime}}</option>
+                                                                                            </td>
+                                                                                             <!-- <td>
+<select ng-model="map.ShowTime" ng-options="t.showTime for t in timlist | filter:{showTime:map.Hall}"><option value="{{t.showTime}}">{{t.showTime}}</option>
+                                                                                            </td> -->
+
+                                                                                                           <td><input type="date" ng-model="map.From"></td>
+                                                                                                           <td><input type="date" ng-model="map.To"></td>
+
+
+
+
+                                                                                                                                        <td><button ng-click="addMap()" class="btn btn-primary">Add</button></td>
+                                                                                                                                        <td><button ng-click="updateMap()" class="btn btn-primary">Update</button></td>
+
+                                                                                                                                      </tr>
+                                                                                                                                      <tr ng-repeat="map in maplist">
+                                                                                                                                          <td>{{map.Film}}</td>
+                                                                                                                                          <td>{{map.City}}</td>
+                                                                                                                                          <td>{{map.Hall}}</td>
+                                                                                                                                          <td>{{map.ShowTime}}</td>
+                                                                                                                                              <td>{{map.From}}</td>
+                                                                                                                                                  <td>{{map.To}}</td>
+
+                                                                                                                                         <td><button ng-click="removeMap(map)" class="btn btn-danger">Remove</button></td>
+                                                                                                                                          <td><button ng-click="editMap(map)" class="btn btn-primary">Edit</button></td>
+                                                                                                                                      </tr>
+                                                                                                                                  </tbody>
+                                                                                                                                </table></li></ul>
 
 
                                     <!-- <li><a href="#">Full Interior Service</a></li
