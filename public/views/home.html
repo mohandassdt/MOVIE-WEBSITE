@@ -1,7 +1,148 @@
+
+
+<div class="container">
+  <div class="row">
+
+<div class="col-sm-5">
+
+          <input type="text" class="form-control" placeholder="Search" ng-model="searching"/>
+  <div class="col-sm-2" style="margin-left: 97%;margin-top: -34px">
+    <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search" style="color:black"></span></button>
+        </div>
+</div>
+</div>
+<div class="row">
+<div class="col-sm-5">
+<ul class="list-group">
+<li ng-show="searching" ng-repeat="m in moviList| filter:searching" class="list-group-item"> {{m.moviTitle}}</li>
+</ul>
+</div>
+</div>
+    <!-- <br>
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+        <li data-target="#myCarousel" data-slide-to="3"></li>
+      </ol>
+
+
+      <div class="carousel-inner" role="listbox">
+        <div class="item active">
+            <img src="img/a1.jpg" alt="1" width="800" height="345">
+        </div>
+
+        <div class="item">
+          <img src="img/a2.jpg" alt="2" width="800" height="345">
+        </div>
+
+        <div class="item">
+          <img src="img/a3.jpg" alt="3" width="800" height="345">
+        </div>
+
+        <div class="item">
+          <img src="img/a4.jpg" alt="4" width="800" height="345">
+        </div>
+      </div>
+
+      <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </div> -->
+
+
+
+<form>
+  <div style="padding:20px">
+    <label class="radio-inline">
+      <input type="radio" ng-model="moviRadio" name="optradio" value="All" checked>All
+    </label>
+    <label class="radio-inline">
+      <input type="radio" ng-model="moviRadio" name="optradio" value="Tamil">Tamil
+    </label>
+    <label class="radio-inline">
+      <input type="radio" ng-model="moviRadio" name="optradio" value="English">English
+    </label>
+    <label class="radio-inline">
+      <input type="radio" ng-model="moviRadio" name="optradio" value="Hindi">Hindi
+    </label>
+    <label class="radio-inline">
+      <input type="radio" ng-model="moviRadio" name="optradio" value="Telugu">Telugu
+    </label>
+    <label class="radio-inline">
+      <input type="radio" ng-model="moviRadio" name="optradio" value="Malayalam">Malayalam
+    </label>
+</div>
 <div>
-  {{ home }}
+    <div ng-switch="moviRadio">
+
+
+
+
+   <div ng-switch-when="All"  class="movie-container" style="width:20px;">
+
+<div class="row">
+      <div ng-repeat="m in moviList" class="col-sm-4">
+        <img src="{{m.moviPoster}}" style="width:100px;height:100px;">
+
+       {{m.moviTitle}}
+       {{m.moviYear}}
+       {{m.moviLanguage}} </div>
+  </div>
 </div>
 
-<p>
 
-<a href="#/booking">booking!!</a>
+  <div ng-switch-when="Tamil" style="width:20px;">
+
+    <!-- filter : {'name' : 'O', 'city' : 'London'} -->
+    <div ng-repeat="m in moviList | filter:'Tamil'">
+      <img src="{{m.moviPoster}}" style="width:100px;height:100px;display:inline-block;"><br>
+
+     {{m.moviTitle}}<br>
+     {{m.moviYear}}<br>
+     {{m.moviLanguage}} </div>
+  </div>
+  <div ng-switch-when="English" style="width:20px;">
+    <div ng-repeat="m in moviList |filter:'English'">
+      <img src="{{m.moviPoster}}" style="width:100px;height:100px;">
+
+     {{m.moviTitle}}
+     {{m.moviYear}}
+     {{m.moviLanguage}} </div>
+  </div>
+  <div ng-switch-when="Hindi" style="width:20px;">
+    <div ng-repeat="m in moviList |filter:'Hindi'">
+      <img src="{{m.moviPoster}}" style="width:100px;height:100px;">
+
+     {{m.moviTitle}}
+     {{m.moviYear}}
+     {{m.moviLanguage}} </div>
+ </div>
+ <div ng-switch-when="Telugu" style="width:20px;">
+   <div ng-repeat="m in moviList |filter:'Telugu'">
+     <img src="{{m.moviPoster}}" style="width:100px;height:100px;">
+
+    {{m.moviTitle}}
+    {{m.moviYear}}
+    {{m.moviLanguage}} </div>
+</div>
+<div ng-switch-when="Malayalam" style="width:20px;">
+  <div ng-repeat="m in moviList |filter:'Malayalam'">
+    <img src="{{m.moviPoster}}" style="width:100px;height:100px;">
+
+   {{m.moviTitle}}
+   {{m.moviYear}}
+   {{m.moviLanguage}} </div>
+</div>
+</div>
+  </form>
+</div>
+</div>
