@@ -198,3 +198,12 @@ a:hover.sidebar-item-active {
   width: 100%;
   text-align: center;
 }
+.carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+      width: 70%;
+      margin-left: 100px;
+    }
+  .movie-container{
+
+display: inline-block;
+  }
