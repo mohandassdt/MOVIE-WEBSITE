@@ -1,5 +1,4 @@
 
-
 <div class="container">
   <div class="row">
 
@@ -20,33 +19,26 @@
 </div>
     <!-- <br>
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
-
       <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
         <li data-target="#myCarousel" data-slide-to="1"></li>
         <li data-target="#myCarousel" data-slide-to="2"></li>
         <li data-target="#myCarousel" data-slide-to="3"></li>
       </ol>
-
-
       <div class="carousel-inner" role="listbox">
         <div class="item active">
             <img src="img/a1.jpg" alt="1" width="800" height="345">
         </div>
-
         <div class="item">
           <img src="img/a2.jpg" alt="2" width="800" height="345">
         </div>
-
         <div class="item">
           <img src="img/a3.jpg" alt="3" width="800" height="345">
         </div>
-
         <div class="item">
           <img src="img/a4.jpg" alt="4" width="800" height="345">
         </div>
       </div>
-
       <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
         <span class="sr-only">Previous</span>
@@ -87,60 +79,90 @@
 
 
 
-   <div ng-switch-when="All"  class="movie-container" style="width:20px;">
+   <div ng-switch-when="All"  class="movie-container">
 
 <div class="row">
-      <div ng-repeat="m in moviList" class="col-sm-4">
-        <img src="{{m.moviPoster}}" style="width:100px;height:100px;">
+      <div ng-repeat="m in moviList" class="col-xs-6 col-sm-3 col-md-4">
+        <img src="{{m.moviPoster}}" style="width:225px;height:225px;">
 
-       {{m.moviTitle}}
+      <p style="display:table-caption;margin-left:57px;padding:19px">
+      <p>{{m.moviTitle}}</p>
        {{m.moviYear}}
-       {{m.moviLanguage}} </div>
+  {{m.moviLanguage}}
+       <button ng-click="bookTicket(m)" class="btn btn-danger"><a href="#/ticketBooking">BOOK</button></p>
+
+
+    </div>
   </div>
 </div>
 
 
-  <div ng-switch-when="Tamil" style="width:20px;">
+  <div ng-switch-when="Tamil">
 
     <!-- filter : {'name' : 'O', 'city' : 'London'} -->
-    <div ng-repeat="m in moviList | filter:'Tamil'">
-      <img src="{{m.moviPoster}}" style="width:100px;height:100px;display:inline-block;"><br>
-
-     {{m.moviTitle}}<br>
+    <div ng-repeat="m in moviList | filter:'Tamil'" class="col-xs-6 col-sm-3 col-md-4">
+      <img src="{{m.moviPoster}}" style="width:225px;height:225px;"><br>
+<p style="display:table-caption;margin-left:57px;padding:19px">
+     <p>{{m.moviTitle}}</p>
      {{m.moviYear}}<br>
-     {{m.moviLanguage}} </div>
-  </div>
-  <div ng-switch-when="English" style="width:20px;">
-    <div ng-repeat="m in moviList |filter:'English'">
-      <img src="{{m.moviPoster}}" style="width:100px;height:100px;">
+     {{m.moviLanguage}}
+     <button ng-click="bookTicket(m)" class="btn btn-danger">BOOK</button></p>
 
+   </div>
+  </div>
+
+
+  <div ng-switch-when="English">
+    <div ng-repeat="m in moviList |filter:'English'" class="col-xs-6 col-sm-3 col-md-4">
+      <img src="{{m.moviPoster}}" style="width:225px;height:225px;">
+<p style="display:table-caption;margin-left:57px;padding:19px">
      {{m.moviTitle}}
      {{m.moviYear}}
-     {{m.moviLanguage}} </div>
-  </div>
-  <div ng-switch-when="Hindi" style="width:20px;">
-    <div ng-repeat="m in moviList |filter:'Hindi'">
-      <img src="{{m.moviPoster}}" style="width:100px;height:100px;">
+     {{m.moviLanguage}}
+     <button ng-click="bookTicket(m)" class="btn btn-danger"><a href="#/ticketBooking">BOOK</a></button></button></p>
 
+
+    </div>
+
+  </div>
+
+
+  <div ng-switch-when="Hindi">
+    <div ng-repeat="m in moviList |filter:'Hindi'" class="col-xs-6 col-sm-3 col-md-4">
+      <img src="{{m.moviPoster}}" style="width:225px;height:225px;">
+<p style="display:table-caption;margin-left:57px;padding:19px">
      {{m.moviTitle}}
      {{m.moviYear}}
-     {{m.moviLanguage}} </div>
+     {{m.moviLanguage}}
+     <button ng-click="bookTicket(m)" class="btn btn-danger">BOOK</button></p>
+
+
+   </div>
  </div>
- <div ng-switch-when="Telugu" style="width:20px;">
-   <div ng-repeat="m in moviList |filter:'Telugu'">
-     <img src="{{m.moviPoster}}" style="width:100px;height:100px;">
 
+
+ <div ng-switch-when="Telugu">
+   <div ng-repeat="m in moviList |filter:'Telugu'" class="col-xs-6 col-sm-3 col-md-4">
+     <img src="{{m.moviPoster}}" style="width:225px;height:225px;">
+<p style="display:table-caption;margin-left:57px;padding:19px">
     {{m.moviTitle}}
     {{m.moviYear}}
-    {{m.moviLanguage}} </div>
-</div>
-<div ng-switch-when="Malayalam" style="width:20px;">
-  <div ng-repeat="m in moviList |filter:'Malayalam'">
-    <img src="{{m.moviPoster}}" style="width:100px;height:100px;">
+    {{m.moviLanguage}}
+    <button ng-click="bookTicket(m)" class="btn btn-danger"><a href="#/ticketBooking">BOOK</a></button></button></p>
+  </div>
 
+</div>
+
+<div ng-switch-when="Malayalam">
+  <div ng-repeat="m in moviList |filter:'Malayalam'" class="col-xs-6 col-sm-3 col-md-4">
+    <img src="{{m.moviPoster}}" style="width:225px;height:225px;">
+<p style="display:table-caption;margin-left:57px;padding:19px">
    {{m.moviTitle}}
    {{m.moviYear}}
-   {{m.moviLanguage}} </div>
+   {{m.moviLanguage}}
+   <button ng-click="bookTicket(m)" class="btn btn-danger"><a href="#/ticketBooking">BOOK</a></button></button></p>
+ </div>
+
 </div>
 </div>
   </form>

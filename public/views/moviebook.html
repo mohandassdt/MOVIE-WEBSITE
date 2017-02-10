@@ -1,0 +1,37 @@
+<div>
+
+  <p>{{poster}}</p>
+
+<img src="{{movieinfo.moviPoster}}" style="width:225px;height:225px;">
+
+
+<br>
+   <p>{{movieinfo.moviTitle}}</p>
+
+
+  <select ng-model="book.city">
+        <option ng-repeat="map in maplist">{{map.City}}</option>
+  </select>
+<br>
+  <select ng-model="book.hall">
+        <option ng-repeat="map in maplist">{{map.Hall}}</option>
+  </select>
+  <br>
+   <input type="date" ng-model="book.date"/>
+   <br>
+  <select ng-model="book.show">
+        <option ng-repeat="map in maplist">{{map.ShowTime}}</option>
+  </select>
+  <br>
+
+  <!-- <select ng-model="book.">
+        <option ng-repeat="map in maplist">{{map.City}}</option>
+  </select>
+  <br>
+
+  <select ng-model="book.city">
+        <option ng-repeat="map in maplist">{{map.City}}</option>
+  </select> -->
+
+
+</div>
