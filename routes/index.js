@@ -1,8 +1,9 @@
-'use strict';
+var express = require('express');
+var router = express.Router();
 
-var app = require('angular').module('movieApp');
+/* GET home page. */
+router.get('/', function(req, res, next) {
+  res.render('index', { title: 'Basic Express App' });
+});
 
-app.controller('BookingController', require('./bookingController'));
-app.controller('CancellationController', require('./cancellationController'));
-app.controller('HomeController', require('./homeController'));
-app.controller('TicketBookingController', require('./ticketBookingController'));
+module.exports = router;

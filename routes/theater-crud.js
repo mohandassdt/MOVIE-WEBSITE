@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var bodyParser = require('body-parser');
+var bodyParser = require('body-parser'); //parses information from POST
 
 router.use(bodyParser.urlencoded({ extended: true }));
 
@@ -8,11 +8,11 @@ router.use(bodyParser.urlencoded({ extended: true }));
 var mongoose = require('mongoose');
 
 var theaterSchema = mongoose.Schema({
-  TheaterId:String,
-  TheaterName:String,
-  location:String,
-  seatingcapacity:String,
-  showtime:String,
+  TheaterID:String,
+  TheaterName: String,
+  location: String,
+  // showTimemodel:String,
+ showTime:String
  });
 var Theater = mongoose.model('Theater',theaterSchema,'theaterTable');
 
@@ -35,21 +35,21 @@ router.get('/theater/:id', function (req, res) {
 
 router.post('/theater', function(req, res){
   console.log(req.body);
-  //  var id = req.body.TheaterId;
-   var name = req.body.TheaterName;
-   var loc = req.body.location;
-   var seat= req.body.seatingcapacity;
-   var time = req.body.showtime;
-   var Theater1 = new Theater({
-    //  TheaterId:id,
-     TheaterName:name,
-     location:loc,
-     seatingcapacity:seat,
-     showtime:time,
+  var id = req.body.TheaterID;
+  var name = req.body.TheaterName;
+  var loc=req.body.location;
+  // var model=req.body.showTimemodel;
+  var time=req.body.showTime;
+var theater1 = new Theater({
+  TheaterID:id,
+  TheaterName:name,
+  location:loc,
+  // showTimemodel:model,
+  showTime:time
 
 });
 
-  Theater1.save(function(err, docs){
+  theater1.save(function(err, docs){
     if ( err ) throw err;
     console.log("theater Saved Successfully");
     res.json(docs);
