@@ -23,6 +23,10 @@ app.config(function($routeProvider) {
     templateUrl: 'views/cancellation.html',
     controller: 'CancellationController',
   })
+  .when('/moviebook', {
+    templateUrl: 'views/moviebook.html',
+    controller: 'TicketBookingController',
+  })
   .otherwise({
     redirectTo: '/home',
   });
