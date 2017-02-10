@@ -1,4 +1,3 @@
-
 var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
@@ -10,14 +9,14 @@ router.use(bodyParser.urlencoded({ extended: true }));
 var mongoose = require('mongoose');
 
 var mappingSchema = mongoose.Schema({
-  Film:String,
-  City:String,
-  Hall:String,
-  ShowTime:String,
+ Film:String,
+ City:String,
+ Hall:String,
+ showtime:String,
+ From:String,
+ To:String
+});
 
-  From:String,
-  To:String
- });
 var Mapping = mongoose.model('Mapping',mappingSchema, 'mappingTable');
 
 
@@ -39,20 +38,19 @@ router.get('/map/:id', function (req, res) {
 
 router.post('/map', function(req, res){
   console.log(req.body);
-  var film = req.body.Film;
-  var city = req.body.City;
-  var theat = req.body.Hall;
-  var show = req.body.ShowTime;
-  var frm = req.body.From;
-  var to = req.body.To;
-
-var mapping1 = new Mapping({
-    Film:film,
-    City:city,
-    Hall:theat,
-    ShowTime:show,
-    From:frm,
-    To:to
+    var film = req.body.Film;
+    var city = req.body.City;
+    var theater = req.body.Hall;
+    var show = req.body.showtime;
+    var frm = req.body.From;
+    var to = req.body.To;
+    var mapping1 = new Mapping({
+      Film:film,
+      City:city,
+      Hall:theater,
+      showtime:show,
+      From:frm,
+      To:to
 });
 
   mapping1.save(function(err, docs){
