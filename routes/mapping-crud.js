@@ -14,7 +14,7 @@ var mappingSchema = mongoose.Schema({
   City:String,
   Hall:String,
   ShowTime:String,
-
+Language:String,
   From:String,
   To:String
  });
@@ -43,6 +43,7 @@ router.post('/map', function(req, res){
   var city = req.body.City;
   var theat = req.body.Hall;
   var show = req.body.ShowTime;
+    var lang = req.body.Language;
   var frm = req.body.From;
   var to = req.body.To;
 
@@ -51,6 +52,7 @@ var mapping1 = new Mapping({
     City:city,
     Hall:theat,
     ShowTime:show,
+    Language:lang,
     From:frm,
     To:to
 });
