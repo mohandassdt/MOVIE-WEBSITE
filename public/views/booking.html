@@ -668,6 +668,7 @@
                                                                                                                 <th>City</th>
                                                                                                           <th>Theater</th>
                                                                                                                     <th>Show time</th>
+                                                                                                                    <th>Language</th>
                                                                                                     <th>From</th>
                                                                                                             <th>To</th>
 
@@ -708,7 +709,7 @@
                                                                                             </td>
                                                                                              <!-- <td>
 <select ng-model="map.ShowTime" ng-options="t.showTime for t in timlist | filter:{showTime:map.Hall}"><option value="{{t.showTime}}">{{t.showTime}}</option>
-                                                                                            </td> -->
+</td> -->                                                                      <td><input type="text" ng-model="map.Language"></td>
 
                                                                                                            <td><input type="date" ng-model="map.From"></td>
                                                                                                            <td><input type="date" ng-model="map.To"></td>
@@ -725,6 +726,7 @@
                                                                                                                                           <td>{{map.City}}</td>
                                                                                                                                           <td>{{map.Hall}}</td>
                                                                                                                                           <td>{{map.ShowTime}}</td>
+                                                                                                                                            <td>{{map.Language| uppercase }}</td>
                                                                                                                                               <td>{{map.From}}</td>
                                                                                                                                                   <td>{{map.To}}</td>
 

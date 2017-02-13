@@ -52,119 +52,29 @@
 
 
 
-<form>
+
   <div style="padding:20px">
-    <label class="radio-inline">
-      <input type="radio" ng-model="moviRadio" name="optradio" value="All" checked>All
-    </label>
-    <label class="radio-inline">
-      <input type="radio" ng-model="moviRadio" name="optradio" value="Tamil">Tamil
-    </label>
-    <label class="radio-inline">
-      <input type="radio" ng-model="moviRadio" name="optradio" value="English">English
-    </label>
-    <label class="radio-inline">
-      <input type="radio" ng-model="moviRadio" name="optradio" value="Hindi">Hindi
-    </label>
-    <label class="radio-inline">
-      <input type="radio" ng-model="moviRadio" name="optradio" value="Telugu">Telugu
-    </label>
-    <label class="radio-inline">
-      <input type="radio" ng-model="moviRadio" name="optradio" value="Malayalam">Malayalam
-    </label>
-</div>
+
+    <select ng-model="movieLang">
+                <option value="">All</option>
+        <option ng-repeat="m in moviList |unique:'moviLanguage'">{{m.moviLanguage}}</option>
+                </select>
+              </div>
+
 <div>
-    <div ng-switch="moviRadio">
+  <div ng-repeat="m in moviList | filter:movieLang" class="col-xs-6 col-sm-3 col-md-4">
+    <img src="{{m.moviPoster}}" style="width:210px;height:210px;">
 
-
-
-
-   <div ng-switch-when="All"  class="movie-container">
-
-<div class="row">
-      <div ng-repeat="m in moviList" class="col-xs-6 col-sm-3 col-md-4">
-        <img src="{{m.moviPoster}}" style="width:225px;height:225px;">
-
-      <p style="display:table-caption;margin-left:57px;padding:19px">
-      <p>{{m.moviTitle}}</p>
-       {{m.moviYear}}
-  {{m.moviLanguage}}
-       <button ng-click="bookTicket(m)" class="btn btn-danger"><a href="#/ticketBooking">BOOK</button></p>
-
-
-    </div>
-  </div>
-</div>
-
-
-  <div ng-switch-when="Tamil">
-
-    <!-- filter : {'name' : 'O', 'city' : 'London'} -->
-    <div ng-repeat="m in moviList | filter:'Tamil'" class="col-xs-6 col-sm-3 col-md-4">
-      <img src="{{m.moviPoster}}" style="width:225px;height:225px;"><br>
-<p style="display:table-caption;margin-left:57px;padding:19px">
-     <p>{{m.moviTitle}}</p>
-     {{m.moviYear}}<br>
-     {{m.moviLanguage}}
-     <button ng-click="bookTicket(m)" class="btn btn-danger">BOOK</button></p>
-
+  <p style="display:table-caption;margin-left:57px;padding:10px">
+  <p>{{m.moviTitle}}</p>
+<p>{{m.moviYear}}</p>
+<p>{{m.moviLanguage}}</p>
+   <button ng-click="bookTicket(m)" class="btn btn-danger">BOOK</button></p>
    </div>
-  </div>
 
 
-  <div ng-switch-when="English">
-    <div ng-repeat="m in moviList |filter:'English'" class="col-xs-6 col-sm-3 col-md-4">
-      <img src="{{m.moviPoster}}" style="width:225px;height:225px;">
-<p style="display:table-caption;margin-left:57px;padding:19px">
-     {{m.moviTitle}}
-     {{m.moviYear}}
-     {{m.moviLanguage}}
-     <button ng-click="bookTicket(m)" class="btn btn-danger"><a href="#/ticketBooking">BOOK</a></button></button></p>
 
 
-    </div>
 
-  </div>
-
-
-  <div ng-switch-when="Hindi">
-    <div ng-repeat="m in moviList |filter:'Hindi'" class="col-xs-6 col-sm-3 col-md-4">
-      <img src="{{m.moviPoster}}" style="width:225px;height:225px;">
-<p style="display:table-caption;margin-left:57px;padding:19px">
-     {{m.moviTitle}}
-     {{m.moviYear}}
-     {{m.moviLanguage}}
-     <button ng-click="bookTicket(m)" class="btn btn-danger">BOOK</button></p>
-
-
-   </div>
- </div>
-
-
- <div ng-switch-when="Telugu">
-   <div ng-repeat="m in moviList |filter:'Telugu'" class="col-xs-6 col-sm-3 col-md-4">
-     <img src="{{m.moviPoster}}" style="width:225px;height:225px;">
-<p style="display:table-caption;margin-left:57px;padding:19px">
-    {{m.moviTitle}}
-    {{m.moviYear}}
-    {{m.moviLanguage}}
-    <button ng-click="bookTicket(m)" class="btn btn-danger"><a href="#/ticketBooking">BOOK</a></button></button></p>
-  </div>
-
-</div>
-
-<div ng-switch-when="Malayalam">
-  <div ng-repeat="m in moviList |filter:'Malayalam'" class="col-xs-6 col-sm-3 col-md-4">
-    <img src="{{m.moviPoster}}" style="width:225px;height:225px;">
-<p style="display:table-caption;margin-left:57px;padding:19px">
-   {{m.moviTitle}}
-   {{m.moviYear}}
-   {{m.moviLanguage}}
-   <button ng-click="bookTicket(m)" class="btn btn-danger"><a href="#/ticketBooking">BOOK</a></button></button></p>
- </div>
-
-</div>
-</div>
-  </form>
 </div>
 </div>

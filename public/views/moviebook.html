@@ -1,37 +1,52 @@
-<div>
-
-  <p>{{poster}}</p>
-
-<img src="{{movieinfo.moviPoster}}" style="width:225px;height:225px;">
+<div class="container">
 
 
-<br>
-   <p>{{movieinfo.moviTitle}}</p>
+
+<img src="{{movieinfo.moviPoster}}" style="width:370px;height:400px;float: left;">
 
 
-  <select ng-model="book.city">
+<div class="table-responsive">
+  <table class="table">
+  <tr>
+    <td><b>Movie title</b></td>
+  <td> <b>{{movieinfo.moviTitle}} </b></td>
+</tr>
+
+<tr>
+  <td><b>Select City</b></td>
+  <td><select ng-model="book.city">
         <option ng-repeat="map in maplist">{{map.City}}</option>
-  </select>
-<br>
-  <select ng-model="book.hall">
+  </select></td>
+</tr>
+<tr>
+  <td><b>Select Theater</b></td>
+  <td><select ng-model="book.hall">
         <option ng-repeat="map in maplist">{{map.Hall}}</option>
-  </select>
-  <br>
-   <input type="date" ng-model="book.date"/>
-   <br>
+  </select></td>
+</tr>
+<tr>
+  <td><b>Select Date</td>
+  <td> <input type="date" ng-model="book.date"/></td>
+ </tr>
+ <tr>
+   <td><b>Select Show Time</b></td>
+   <td>
   <select ng-model="book.show">
         <option ng-repeat="map in maplist">{{map.ShowTime}}</option>
-  </select>
-  <br>
+  </select></td>
+</tr>
+<tr>
+  <td><b>Amount</b></td>
+  <td>
+ <select ng-model="book.Amount">
+        <option>50</option>
+       <option>100</option>
+       <option>150</option>
+ </select></td>
 
-  <!-- <select ng-model="book.">
-        <option ng-repeat="map in maplist">{{map.City}}</option>
-  </select>
-  <br>
+</tr>
+</table>
 
-  <select ng-model="book.city">
-        <option ng-repeat="map in maplist">{{map.City}}</option>
-  </select> -->
-
+</div>
 
 </div>
