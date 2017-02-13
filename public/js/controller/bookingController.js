@@ -15,7 +15,7 @@ module.exports = function($scope, $http,$log) {
 // var movilist={};
 //     $scope.get = function(){
 //    console.log('Hi Welcome');
-    // $http.get('http://www.omdbapi.com/?t='+$scope.movi.Title+'&y='+$scope.movi.Year+'&plot=short&r=json').success(function (response){
+//     $http.get('http://www.omdbapi.com/?t='+$scope.movi.Title+'&y='+$scope.movi.Year+'&plot=short&r=json').success(function (response){
 //          console.log(response);
 //   for(var key in response)
 //   {
@@ -69,13 +69,8 @@ var refresh = function() {
 refresh();
 
 $scope.addMovie = function(movi) {
-  // var Year = document.getElementById("Yr").value;
-  // console.log(Year);
-
-    // $http.get(`http://www.omdbapi.com/?t=${movi.moviTitle} +'&y='+${movi.moviYear}&plot=short&r=json`).success(function(response) {
+    $http.get(`http://www.omdbapi.com/?t=${movi.moviTitle}&plot=short&r=json`).success(function(response) {
         //console.log(response);
-
-         $http.get('http://www.omdbapi.com/?t='+$scope.movi.moviTitle+'&y='+$scope.movi.moviYear+'&plot=short&r=json').success(function (response){
         var movieObj = {};
         for (var key in response) {
             if (key == 'Title' || key == 'Year' || key == 'Language' || key == 'Poster' || key == 'Genre' || key == 'Director' || key == 'Actors' || key == 'Plot') {
@@ -171,7 +166,7 @@ var refreshTheat = function () {
 
   $scope.removeTheater = function (id) {
       console.log(id);
-      $http.delete('/theater/theater/' + id._id).success(function (response) {
+      $http.delete('/map/map/' + id._id).success(function (response) {
           console.log(response);
           console.log('theater DELETED SUCCESSFULLY');
           refreshTheat();
@@ -179,7 +174,7 @@ var refreshTheat = function () {
   };
 
   $scope.editTheater = function (id) {
-       $http.get('/theater/theater/' + id._id).success(function (response) {
+       $http.get('/map/map/' + id._id).success(function (response) {
           $scope.thtre = response[0];
       });
   };
@@ -293,6 +288,9 @@ var refreshSho = function () {
   }
 
 
+
+///////////////////mappingggggggggggg
+
   var refreshMape = function () {
         $http.get('/map/map').success(function (response) {
             console.log('READ IS SUCCESSFUL');
@@ -308,15 +306,12 @@ var refreshSho = function () {
   // app.controller('myCtrl', function($scope) {
   //     $scope.count = 0;
   // });
-  var time = document.getElementById("st").value;
-  console.log(time);
         console.log($scope.map);
         $http.post('/map/map',$scope.map).success(function (response) {
             console.log(response);
             console.log("CREATE IS SUCCESSFUL");
-
+            refreshMape();
         });
-          refreshMape();
     };
 
     $scope.removeMap = function (id) {
