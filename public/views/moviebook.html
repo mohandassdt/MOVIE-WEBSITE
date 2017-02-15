@@ -1,11 +1,16 @@
+
+
+
+
+
 <div class="container">
 
 
 
-<img src="{{movieinfo.moviPoster}}" style="width:370px;height:400px;float: left;">
+<img src="{{movieinfo.moviPoster}}" style="width:300px;height:400px;float: left;">
 
 
-<div class="table-responsive">
+<div class="table-responsive"style="margin-top: 6%">
   <table class="table">
   <tr>
     <td><b>Movie title</b></td>
@@ -21,18 +26,18 @@
 <tr>
   <td><b>Select Theater</b></td>
   <td><select ng-model="book.hall">
-        <option ng-repeat="map in maplist">{{map.Hall}}</option>
+        <option ng-repeat="map in maplist| filter:book.city">{{map.Hall}}</option>
   </select></td>
 </tr>
 <tr>
   <td><b>Select Date</td>
-  <td> <input type="date" ng-model="book.date"/></td>
+  <td> <input  type="date" ng-model="book.date"/></td>
  </tr>
  <tr>
    <td><b>Select Show Time</b></td>
    <td>
   <select ng-model="book.show">
-        <option ng-repeat="map in maplist">{{map.ShowTime}}</option>
+        <option ng-repeat="map in maplist| filter:book.hall">{{map.ShowTime}}</option>
   </select></td>
 </tr>
 <tr>
@@ -45,8 +50,56 @@
  </select></td>
 
 </tr>
-</table>
 
+
+<tr>
+  <td><b>Seating Arrangement</b></td>
+<td><p id="seatno"></p></td>
+</tr>
+
+<tr>
+  <td><b>No Of seats</b></td>
+<td><p>{{NumberOfSeats}}</p></td>
+</tr>
+<!--
+<tr>
+  <td><b>total Amount</b></td>
+<td><p>{{Totalamount}}</p></td>
+</tr> -->
+
+</table>
 </div>
 
+
+
+
+
+
+<table class="seatLayout"style="margin-top: 2%;
+    margin-left: 10%;">
+
+      <div style="margin-left: 20%;margin-top: 10%;">
+        <img src="img/seatnorml.jpg" style="width:30px;height:30px;">Available
+        <img src="img/seatbook.jpg" style="width:30px;height:30px;">Reserved
+      </div>
+    <tbody>
+      <tr>
+            <td></td>
+            <td ng-repeat="col in cols track by $index" ng-bind="col"></td>
+        </tr>
+        <tr class="tablestyle" ng-repeat="row in rows">
+            <td ng-bind="row"></td>
+            <td ng-repeat="col in cols" ng-click="seatClicked(row + col)" ng-switch on="getStatus(row + col)" style="padding: 5px 5px 5px 5px;">
+                <img ng-switch-when="selected" src="img/seatbook.jpg" style="width:30px;height:30px;">
+                <!-- <img ng-switch-when="reserved" src="img/seatbook.png" style="width:30px;height:30px;"> -->
+                <img ng-switch-default src="img/seatnorml.jpg" style="width:30px;height:30px;">
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+<div style="background-color:black;width: 36%;margin-left: 10%;">
+<h4 style="color:white;text-align:center">SCREEN</h4>
+</div>
 </div>
