@@ -11,19 +11,20 @@ var mongoose = require('mongoose');
 
 var bookSchema = mongoose.Schema({
   bookingid:String,
-  FilmName:String,
+  Title:String,
   CityName:String,
   HallName:String,
     Day:String,
   ShowTime:String,
     Amount:String,
-   seatNo:String
+    NoTickets:String,
+   seatnumbers:String
  });
 var Book = mongoose.model('Book',bookSchema, 'bookTable');
 
 
 router.get('/bok', function (req, res) {
-    console.log("REACHED GET FUNCTION ON SERVER");
+    console.log("REACHED GET FUNCTION ON Booking SERVER");
     Book.find({}, function (err, docs) {
          res.json(docs);
 
@@ -31,7 +32,7 @@ router.get('/bok', function (req, res) {
 });
 
 router.get('/bok/:id', function (req, res) {
-    console.log("REACHED GET ID FUNCTION ON SERVER");
+    console.log("REACHED GET ID FUNCTION ON booking SERVER");
      Book.find({_id: req.params.id}, function (err, docs) {
          res.json(docs);
 
@@ -40,27 +41,29 @@ router.get('/bok/:id', function (req, res) {
 
 router.post('/bok', function(req, res){
   console.log(req.body);
-  var filmname = req.body.FilmName;
+  var filmname = req.body.Title;
   var cityname= req.body.CityName;
   var theatname = req.body.HallName;
  var dayname= req.body.Day;
   var showname = req.body.ShowTime;
   var moneyamnt = req.body.Amount;
-  var seat = req.body.seatNo;
+  var Quantity = req.body.NoTickets;
+  var seat = req.body.seatnumbers;
 
 var book1 = new Book({
-    FilmName:filmname,
+    Title:filmname,
     CityName:cityname,
     HallName:theatname,
     Day:dayname,
     ShowTime:showname,
     Amount:moneyamnt,
-    seatNo:seat
+    NoTickets:Quantity,
+    seatnumbers:seat
 });
 
   book1.save(function(err, docs){
     if ( err ) throw err;
-    console.log("map Saved Successfully");
+    console.log("booking Saved Successfully");
     res.json(docs);
   });
 
