@@ -129,7 +129,6 @@ $scope.updateMovie = function() {
         refresh();
     })
 }
-//theater controller.............
 
 
 var refreshTheat = function () {
@@ -151,17 +150,7 @@ var refreshTheat = function () {
       });
   };
 
-// $http({
-//   method: 'POST',
-//   url:'thetr/addTheater',
-//   headers:{'content-Type':'application/jason'},
-//   data: $scope.thtre
-// })
-// .then(function(response){
-//   console.log(response);
-//   console.log("create is successfull");
-//   refreshTheat();
-// });
+
 
 
   $scope.removeTheater = function (id) {
