@@ -17,11 +17,16 @@ module.exports = function($scope, $http, $rootScope,$location) {
 
 
                      $rootScope.bookedMovie=m;
-  // alert($rootScope.bookedMovie);
   $location.path('/moviebook');
           };
 
-
+          // $scope.Rate= function (m) {
+          //
+          //
+          //                     $rootScope.bookedMovie=m;
+          //  // alert($rootScope.bookedMovie);
+          //  $location.path('/movie-rate');
+          //          };
 
 
 };
