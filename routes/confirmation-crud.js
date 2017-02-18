@@ -9,21 +9,23 @@ router.use(bodyParser.urlencoded({ extended: true }));
 
 var mongoose = require('mongoose');
 
-var bookSchema = mongoose.Schema({
-  bookingid:String,
-  Title:String,
-  CityName:String,
-  HallName:String,
-    Day:String,
-  ShowTime:String,
-    Amount:String,
-    NoTickets:String,
-   seatnumbers:Array
+var confirmSchema = mongoose.Schema({
+  cnbookingid:String,
+  cnUser:String,
+  cnTitle:String,
+  cnCityName:String,
+  cnHallName:String,
+    cnDay:String,
+  cnShowTime:String,
+    cnAmount:String,
+    cnNoTickets:String,
+   cnseatnumbers:Array,
+   cnMail:String
  });
-var Book = mongoose.model('Book',bookSchema, 'bookTable');
+var Confirm = mongoose.model('Confirm',confirmSchema, 'confirmTable');
 
 
-router.get('/bok', function (req, res) {
+router.get('/con', function (req, res) {
     console.log("REACHED GET FUNCTION ON Booking SERVER");
     Book.find({}, function (err, docs) {
          res.json(docs);
@@ -31,7 +33,7 @@ router.get('/bok', function (req, res) {
     });
 });
 
-router.get('/bok/:id', function (req, res) {
+router.get('/con/:id', function (req, res) {
     console.log("REACHED GET ID FUNCTION ON booking SERVER");
      Book.find({_id: req.params.id}, function (err, docs) {
          res.json(docs);
@@ -39,26 +41,33 @@ router.get('/bok/:id', function (req, res) {
     });
 });
 
-router.post('/bok', function(req, res){
+router.post('/con', function(req, res){
   console.log(req.body);
-  var filmname = req.body.Title;
-  var cityname= req.body.CityName;
-  var theatname = req.body.HallName;
- var dayname= req.body.Day;
-  var showname = req.body.ShowTime;
-  var moneyamnt = req.body.Amount;
-  var Quantity = req.body.NoTickets;
-  var seat = req.body.seatnumbers;
+  var cId = req.body.cnbookingid;
+  var cuser = req.body.cnUser;
+  var cMovie = req.body.cnTitle;
+  var cCity= req.body.cnCityName;
+  var ctheater = req.body.cnHallName;
+ var cDate= req.body.cnDay;
+  var cShow = req.body.cnShowTime;
+  var cAmnt = req.body.cnAmount;
+  var cNumbers = req.body.cnNoTickets;
+  var cSeat = req.body.cnseatnumbers;
+  var mail = req.body.cnMail;
+
 
 var book1 = new Book({
-    Title:filmname,
-    CityName:cityname,
-    HallName:theatname,
-    Day:dayname,
-    ShowTime:showname,
-    Amount:moneyamnt,
-    NoTickets:Quantity,
-    seatnumbers:seat
+  cnbookingid:cId,
+  cnUser:cuser,
+  cnTitle:cMovie,
+    cnMail:mail,
+    cnCityName:cCity,
+    cnHallName:ctheater,
+    cnDay:cDate,
+    cnShowTime:cShow,
+    cnAmount:cAmnt,
+    cnNoTickets:cNumbers,
+    cnseatnumbers:cSeat
 });
 
   book1.save(function(err, docs){
@@ -69,14 +78,14 @@ var book1 = new Book({
 
   })
 
-router.delete('/bok/:id', function(req, res){
+router.delete('/con/:id', function(req, res){
    console.log("REACHED Delete FUNCTION ON SERVER");
       Book.remove({_id:req.params.id}, function(err, docs){
         res.json(docs);
     });
 })
 
-router.put('/bok/:id', function(req, res){
+router.put('/con/:id', function(req, res){
     console.log("REACHED PUT");
     console.log(req.body);
   Book.findOneAndUpdate({_id:req.params.id}, req.body, function (err, data) {
