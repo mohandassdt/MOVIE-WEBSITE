@@ -52,6 +52,14 @@ app.config(function($routeProvider) {
     templateUrl: 'views/moviebook.html',
     controller: 'TicketBookingController',
   })
+  .when('/movie-rate', {
+    templateUrl: 'views/movie-rate.html',
+    controller: 'RateController',
+  })
+  .when('/Confirm', {
+    templateUrl: 'views/Confirm.html',
+    controller: 'ConfirmController',
+  })
   .otherwise({
     redirectTo: '/home',
   });
