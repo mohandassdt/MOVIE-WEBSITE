@@ -4,34 +4,59 @@
   <tr>
     <td><b>Movie title</b></td>
     <td>
-    <p>{{bookingInfo.Title}}</p>
+    <p>{{confirmInfo.Title}}</p>
 </td>
 </tr>
 <tr>
   <td><b>City</b></td>
   <td>
-  <p>{{bookingInfo.CityName}}</p>
+  <p>{{confirmInfo.CityName}}</p>
 </td>
 </tr>
 
 <tr>
   <td><b>Theater</b></td>
   <td>
-  <p>{{bookingInfo.HallName}}</p>
+  <p>{{confirmInfo.HallName}}</p>
 </td>
 </tr>
 
 <tr>
   <td><b>Date</b></td>
   <td>
-  <p>{{bookingInfo.Day}}</p>
+  <p>{{confirmInfo.Day}}</p>
 </td>
 </tr>
 
 <tr>
   <td><b>Show Time</b></td>
   <td>
-  <p>{{bookingInfo.ShowTime}}</p>
+  <p>{{confirmInfo.ShowTime}}</p>
+</td>
+</tr>
+
+<tr>
+  <td><b>no of seats</b></td>
+  <td>
+  <p>{{confirmInfo.NoTickets}}</p>
+</td>
+
+<tr>
+  <td><b>Seat Number</b></td>
+  <td>
+  <p>{{confirmInfo.seatnumbers}}</p>
+</td>
+</tr>
+<tr>
+  <td><b>User Name</b></td>
+  <td>
+  <input type="text" ng-model="confirm.cnUser">
+</td>
+</tr>
+<tr>
+  <td><b>Mail ID</b></td>
+  <td>
+  <input type="email" ng-model="confirm.cnMail">
 </td>
 </tr>
 
@@ -39,9 +64,9 @@
 
 
 <tr>
-  
+
   <td>
-      <td><button ng-click="Confirm()"  class="btn btn-primary">CONFIRM</button></td>
+      <td><button ng-click="ConfirmBook(confirmlist)"  class="btn btn-primary">CONFIRM</button></td>
   </td>
 </tr>
 
