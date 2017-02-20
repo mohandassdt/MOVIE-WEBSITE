@@ -27,6 +27,16 @@ var refreshBookin = function () {
 // return value;
 // }
 
+var refreshConfirm = function () {
+
+    $http.get('/con/con').success(function (response) {
+        console.log('Confirm READ IS SUCCESSFUL');
+        $scope.confirmlist = response;
+        $scope.confirm = "";
+});
+};
+
+refreshConfirm();
 
 
 
@@ -69,41 +79,6 @@ $scope.NumberOfSeats=selected.length;
 }
 };
 
-// $scope.add=function(){
-//   $scope.seat=true;
-//
-//         var blockSeat = "";
-// $scope.book.Title=$scope.movieinfo.moviTitle;
-//
-//   console.log($scope.book.Title);
-//   console.log($scope.book.CityName);
-//   console.log($scope.book.HallName);
-//   console.log($scope.book.Day);
-//   console.log($scope.book.ShowTime);
-//   console.log($scope.book.Amount);
-//
-//
-// console.log($scope.Booklist);
-//       for (i = 0; i < $scope.Booklist.length; i++)
-//         {
-//
-//   if($scope.Booklist[i].Title== $scope.book.Title &&  $scope.Booklist[i].CityName==$scope.book.CityName && $scope.Booklist[i].HallName==$scope.book.HallName && $scope.Booklist[i].Day==$scope.book.Day && $scope.Booklist[i].ShowTime==$scope.book.ShowTime && $scope.Booklist[i].Amount==$scope.book.Amount)
-//         {
-//           console.log($scope.Booklist[i].Title);
-//               console.log($scope.Booklist[i].CityName);
-//             console.log($scope.Booklist[i].HallName);
-//             console.log($scope.Booklist[i].Day);
-//             console.log($scope.Booklist[i].ShowTime);
-//             console.log($scope.Booklist[i].Amount);
-//             $scope.seat=true;
-//           reserved=$scope.Booklist[i].seatnumbers;
-//           console.log(reserved)
-//           alert(reserved);
-//
-// }        }
-//
-// };
-/////////////////////////////////////////////////////////
 
 $scope.add =function()
 {
@@ -115,24 +90,24 @@ console.log($scope.book.CityName);
 console.log($scope.book.ShowTime);
 try
 {
- for(i=0;i<=$scope.Booklist.length;i++)
+ for(i=0;i<=$scope.confirmlist.length;i++)
        {
-         if($scope.Booklist.length==0)
+         if($scope.confirmlist.length==0)
          {
            $scope.seat = true;
          }
        else
          {
- if($scope.Booklist[i].Title===$scope.book.Title && $scope.Booklist[i].CityName===$scope.book.CityName  && $scope.Booklist[i].HallName===$scope.book.HallName  && $scope.Booklist[i].Day===$scope.book.Day && $scope.Booklist[i].ShowTime==$scope.book.ShowTime)
+ if($scope.confirmlist[i].Title===$scope.book.Title && $scope.confirmlist[i].cnCityName===$scope.book.CityName  && $scope.confirmlist[i].cnHallName===$scope.book.HallName  && $scope.confirmlist[i].cnDay===$scope.book.Day && $scope.confirmlist[i].cnShowTime==$scope.book.ShowTime)
 
            {
-             console.log($scope.Booklist[i].Title);
-              console.log($scope.Booklist[i].CityName);
-            console.log($scope.Booklist[i].HallName);
-            console.log($scope.Booklist[i].Day);
-            console.log($scope.Booklist[i].ShowTime);
+             console.log($scope.confirmlist[i].Title);
+              console.log($scope.confirmlist[i].cnCityName);
+            console.log($scope.confirmlist[i].cnHallName);
+            console.log($scope.confirmlist[i].cnDay);
+            console.log($scope.confirmlist[i].cnShowTime);
           $scope.seat = true;
-          reserved=$scope.Booklist[i].seatnumbers;
+          selected=$scope.confirmlist[i].cnseatnumbers;
         console.log(reserved);
 
       }
@@ -161,10 +136,8 @@ $scope.book.seatnumbers=selected;
     $http.post('/bok/bok', $scope.book).success(function (response) {
             console.log(response);
 
-               alert(" booked successfully ");
-
         });
-        $rootScope.confirmPage=$scope.Booklist;
+        $rootScope.confirmPage=$scope.book;
 $location.path('/Confirm');
         refreshBookin();
 

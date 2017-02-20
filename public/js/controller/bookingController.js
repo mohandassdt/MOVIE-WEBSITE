@@ -155,7 +155,7 @@ var refreshTheat = function () {
 
   $scope.removeTheater = function (id) {
       console.log(id);
-      $http.delete('/map/map/' + id._id).success(function (response) {
+      $http.delete('/theater/theater/' + id._id).success(function (response) {
           console.log(response);
           console.log('theater DELETED SUCCESSFULLY');
           refreshTheat();
@@ -163,7 +163,7 @@ var refreshTheat = function () {
   };
 
   $scope.editTheater = function (id) {
-       $http.get('/map/map/' + id._id).success(function (response) {
+       $http.get('/theater/theater/' + id._id).success(function (response) {
           $scope.thtre = response[0];
       });
   };
@@ -238,6 +238,11 @@ var refreshSho = function () {
   };
 
   refreshSho();
+  $('#add').click(function(){
+           var data = ($('#selecttime').val());
+           $('#time').append("<option value='"+data+"'>"+data+"</option>");
+
+       });
 
   $scope.addShow = function () {
 //     var app = angular.module('movieApp', []);
