@@ -12,7 +12,7 @@ var mongoose = require('mongoose');
 var confirmSchema = mongoose.Schema({
   cnbookingid:String,
   cnUser:String,
-  cnTitle:String,
+  Title:String,
   cnCityName:String,
   cnHallName:String,
     cnDay:String,
@@ -22,20 +22,20 @@ var confirmSchema = mongoose.Schema({
    cnseatnumbers:Array,
    cnMail:String
  });
-var Confirm = mongoose.model('Confirm',confirmSchema, 'confirmTable');
+var Confirm = mongoose.model('Confirm',confirmSchema,'confirmTable');
 
 
 router.get('/con', function (req, res) {
-    console.log("REACHED GET FUNCTION ON Booking SERVER");
-    Book.find({}, function (err, docs) {
+    console.log("REACHED GET FUNCTION ON confirmation SERVER");
+    Confirm.find({}, function (err, docs) {
          res.json(docs);
 
     });
 });
 
 router.get('/con/:id', function (req, res) {
-    console.log("REACHED GET ID FUNCTION ON booking SERVER");
-     Book.find({_id: req.params.id}, function (err, docs) {
+    console.log("REACHED GET ID FUNCTION ON confirmation SERVER");
+     Confirm.find({_id: req.params.id}, function (err, docs) {
          res.json(docs);
 
     });
@@ -45,7 +45,7 @@ router.post('/con', function(req, res){
   console.log(req.body);
   var cId = req.body.cnbookingid;
   var cuser = req.body.cnUser;
-  var cMovie = req.body.cnTitle;
+  var cMovie = req.body.Title;
   var cCity= req.body.cnCityName;
   var ctheater = req.body.cnHallName;
  var cDate= req.body.cnDay;
@@ -56,10 +56,10 @@ router.post('/con', function(req, res){
   var mail = req.body.cnMail;
 
 
-var book1 = new Book({
+var confirm1 = new Confirm({
   cnbookingid:cId,
   cnUser:cuser,
-  cnTitle:cMovie,
+  Title:cMovie,
     cnMail:mail,
     cnCityName:cCity,
     cnHallName:ctheater,
@@ -70,9 +70,9 @@ var book1 = new Book({
     cnseatnumbers:cSeat
 });
 
-  book1.save(function(err, docs){
+  confirm1.save(function(err, docs){
     if ( err ) throw err;
-    console.log("booking Saved Successfully");
+    console.log("confirmation Saved Successfully");
     res.json(docs);
   });
 
@@ -80,7 +80,7 @@ var book1 = new Book({
 
 router.delete('/con/:id', function(req, res){
    console.log("REACHED Delete FUNCTION ON SERVER");
-      Book.remove({_id:req.params.id}, function(err, docs){
+      Confirm.remove({_id:req.params.id}, function(err, docs){
         res.json(docs);
     });
 })
@@ -88,7 +88,7 @@ router.delete('/con/:id', function(req, res){
 router.put('/con/:id', function(req, res){
     console.log("REACHED PUT");
     console.log(req.body);
-  Book.findOneAndUpdate({_id:req.params.id}, req.body, function (err, data) {
+  Confirm.findOneAndUpdate({_id:req.params.id}, req.body, function (err, data) {
       res.json(data);
     });
 })
