@@ -15,7 +15,11 @@ rateSecond:Number,
 rateThird:Number,
 rateFourth:Number,
 rateFifth:Number,
-
+Title:String,
+cnUser:String,
+cnMail:String,
+moviLanguage:String,
+moviYear:Number,
   Total:Number,
   comments:String
 
@@ -46,16 +50,25 @@ router.post('/rt', function(req, res){
   var rating3 = req.body.rateThird;
   var rating4 = req.body.rateFourth;
   var rating5 = req.body.rateFifth;
+  var movie = req.body.Title;
+  var user = req.body.cnUser;
+  var email = req.body.cnMail;
+var lang = req.body.moviLanguage;
   var words= req.body.comments;
   var totalrating = req.body.Total;
 
 
-var rate1 = new Book({
+var rate1 = new Rate({
     rateFirst:rating1,
     rateSecond:rating2,
     rateThird:rating3,
     rateFourth:rating4,
     rateFifth:rating5,
+    Title:movie,
+    cnUser:user,
+    cnMail:email,
+    moviLanguage:lang,
+
     comments:words,
     Total:totalrating
 
