@@ -25,8 +25,11 @@
 <tr>
   <td><b>Select City</b></td>
   <td><select ng-model="book.CityName">
-        <option ng-repeat="map in maplist">{{map.City}}</option>
+        <option ng-repeat="l in locMovie" value="{{l}}" >{{l}}</option>
   </select></td>
+  <!-- <td><select ng-blur="e()" ng-model="book.CityName">
+        <option id="cityNames"></option>
+  </select></td> -->
 </tr>
 <tr>
   <td><b>Select Theater</b></td>
@@ -36,7 +39,7 @@
 </tr>
 <tr>
   <td><b>Select Date</td>
-  <td> <input  type="date" ng-model="book.Day"/></td>
+  <td> <input ng-blur="d()" type="date" id="datebook"/></td>
  </tr>
  <tr>
    <td><b>Select Show Time</b></td>
