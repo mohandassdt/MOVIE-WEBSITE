@@ -290,6 +290,7 @@ var refreshSho = function () {
             console.log('READ IS SUCCESSFUL');
             $scope.maplist = response;
             $scope.map = "";
+            
         });
     };
 

@@ -2,8 +2,10 @@
 
 module.exports = function($scope, $http,$log, $rootScope) {
 $scope.confirmInfo =$rootScope.confirmPage;
+// $scope.cnSeatnumbers=$rootScope.seatArrange;
 // $scope.confirm.movieName=$scope.confirmInfo.Title;
 // $scope.confirm.CityName=$scope.confirmInfo.CityName;
+
 console.log($scope.confirmInfo);
 
 var refreshConfirm = function () {
@@ -17,6 +19,8 @@ var refreshConfirm = function () {
 
 refreshConfirm();
 
+
+
 $scope.ConfirmBook = function (confirmlist) {
   $scope.confirm.Title=$scope.confirmInfo.Title;
 $scope.confirm.cnCityName=$scope.confirmInfo.CityName;
@@ -27,10 +31,13 @@ $scope.confirm.cnCityName=$scope.confirmInfo.CityName;
   $scope.confirm.cnAmount=$scope.confirmInfo.Amount;
   $scope.confirm.cnNoTickets=$scope.confirmInfo.NoTickets;
   $scope.confirm.cnseatnumbers=$scope.confirmInfo.seatnumbers;
+  // $scope.confirm.cnseatnumbers=$scope.cnSeatnumbers;
 
 
     $http.post('/con/con', $scope.confirm).success(function (response) {
             console.log(response);
+alert("booking success...Thank You!!")
+            $location.path('/home');
 
 
         });
@@ -38,5 +45,6 @@ $scope.confirm.cnCityName=$scope.confirmInfo.CityName;
         refreshConfirm();
 
 };
+
 
 };
