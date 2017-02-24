@@ -24,7 +24,7 @@
 
 <tr>
   <td><b>Select City</b></td>
-  <td><select ng-model="book.CityName">
+  <td><select id="select" ng-model="book.CityName" ng-change="sel()">
         <option ng-repeat="l in locMovie" value="{{l}}" >{{l}}</option>
   </select></td>
   <!-- <td><select ng-blur="e()" ng-model="book.CityName">
@@ -34,7 +34,7 @@
 <tr>
   <td><b>Select Theater</b></td>
   <td><select ng-model="book.HallName">
-        <option ng-repeat="map in maplist| filter:book.CityName| filter:movieinfo.moviTitle">{{map.Hall}}</option>
+        <option ng-repeat="t in loctheat" value="{{t}}">{{t}}</option>
   </select></td>
 </tr>
 <tr>
@@ -77,9 +77,11 @@
 
 <tr>
   <td>
+    <!-- <p><button id="generate">Generate</button></p> -->
+<!-- <p><code id="output"></code></p> -->
   </td>
   <td>
-      <td><button ng-click="add()"  class="btn btn-primary">Done</button></td>
+      <button ng-click="add()" class="btn btn-primary">Done</button>
   </td>
 </tr>
 <!--
@@ -132,7 +134,11 @@
   <tr>
     <td><b>No Of seats</b></td>
   <td><p>{{NumberOfSeats}}</p></td>
-  </tr>
+  </tr><p><code id="output"></code></p>
+  <!-- <tr>
+    <td><b>booking id</b></td>
+  <td><p><code id="output"></code></p></td>
+  </tr> -->
   <tr>
 <td>  <button ng-click="bk(Booklist)" class="btn btn-primary">Confirm</button></td>
 </tr>

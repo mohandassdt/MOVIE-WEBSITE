@@ -135,23 +135,23 @@ label.star:before {
     <form>
       <div style="float: left;">
 
-      <input ng-model="rate.rateFirst" ng-click="rt1()" class="star star-5" id="star-5" type="radio" name="star" value="1"/>
+      <input ng-model="rate.rating" class="star star-5" id="star-5" type="radio" name="star" value="5"/>
 
       <label class="star star-5" for="star-5"></label>
 
-      <input ng-model="rate.rateSecond" class="star star-4" id="star-4" type="radio" name="star" value="2"/>
+      <input ng-model="rate.rating" class="star star-4" id="star-4" type="radio" name="star" value="4"/>
 
       <label class="star star-4" for="star-4"></label>
 
-      <input ng-model="rate.rateThird" class="star star-3" id="star-3" type="radio" name="star" value="3"/>
+      <input ng-model="rate.rating" class="star star-3" id="star-3" type="radio" name="star" value="3"/>
 
       <label class="star star-3" for="star-3"></label>
 
-      <input ng-model="rate.rateFourth" class="star star-2" id="star-2" type="radio" name="star" value=4/>
+      <input ng-model="rate.rating" class="star star-2" id="star-2" type="radio" name="star" value="2"/>
 
       <label class="star star-2" for="star-2"></label>
 
-      <input ng-model="rate.rateFifth" class="star star-1" id="star-1" type="radio" name="star" value=5/>
+      <input ng-model="rate.rating" class="star star-1" id="star-1" type="radio" name="star" value="1"/>
 
       <label class="star star-1" for="star-1"></label>
 
@@ -190,8 +190,10 @@ label.star:before {
 </td>
 </tr>
 <tr>
-  <td></td>
+  <!-- <td>
+  </td> -->
   <td><button ng-click="doneRate(rateList)"  class="btn btn-primary">DONE</button></td>
+  <td><button ng-click="confirmRate()" class="btn btn-success">SUBMIT</button></td>
 </tr>
 
 <table>

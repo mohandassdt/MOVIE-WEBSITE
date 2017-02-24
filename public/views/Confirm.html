@@ -1,6 +1,13 @@
 <div class="container">
 <div class="table-responsive">
   <table class="table">
+    <tr>
+      <td><b>BOOKING ID</b></td>
+      <td>
+      <p>{{confirmInfo.bookingid}}</p>
+    </td>
+    </tr>
+
   <tr>
     <td><b>Movie title</b></td>
     <td>
@@ -59,6 +66,24 @@
   <input type="email" ng-model="confirm.cnMail">
 </td>
 </tr>
+<tr>
+  <td><b>ACNT.NO</b></td>
+  <td>
+  <input type="number">
+</td>
+</tr>
+<tr>
+  <td><b>CDN</b></td>
+  <td>
+  <input type="string">
+</td>
+</tr>
+<tr>
+  <td><b>Total Amount</b></td>
+  <td>
+  <p>{{confirmInfo.totalAmnt}}</p>
+</td>
+</tr>
 
 
 
@@ -66,7 +91,7 @@
 <tr>
 
   <td>
-      <td><button ng-click="ConfirmBook(confirmlist)"  class="btn btn-primary">CONFIRM</button></td>
+      <td><button ng-click="ConfirmBook(confirmlist)"  class="btn btn-success">CONFIRM</button></td>
   </td>
 </tr>
 
