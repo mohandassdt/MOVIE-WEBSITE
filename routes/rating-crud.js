@@ -10,17 +10,14 @@ router.use(bodyParser.urlencoded({ extended: true }));
 var mongoose = require('mongoose');
 
 var RateSchema = mongoose.Schema({
-rateFirst:Number,
-rateSecond:Number,
-rateThird:Number,
-rateFourth:Number,
-rateFifth:Number,
+rating:String,
+
 Title:String,
 cnUser:String,
 cnMail:String,
 moviLanguage:String,
 moviYear:Number,
-  Total:Number,
+  Total:String,
   comments:String
 
  });
@@ -45,11 +42,11 @@ router.get('/rt/:id', function (req, res) {
 
 router.post('/rt', function(req, res){
   console.log(req.body);
-  var rating1 = req.body.rateFirst;
-  var rating2 = req.body.rateSecond;
-  var rating3 = req.body.rateThird;
-  var rating4 = req.body.rateFourth;
-  var rating5 = req.body.rateFifth;
+  var rating1 = req.body.rating;
+  // var rating2 = req.body.rateSecond;
+  // var rating3 = req.body.rateThird;
+  // var rating4 = req.body.rateFourth;
+  // var rating5 = req.body.rateFifth;
   var movie = req.body.Title;
   var user = req.body.cnUser;
   var email = req.body.cnMail;
@@ -59,11 +56,11 @@ var lang = req.body.moviLanguage;
 
 
 var rate1 = new Rate({
-    rateFirst:rating1,
-    rateSecond:rating2,
-    rateThird:rating3,
-    rateFourth:rating4,
-    rateFifth:rating5,
+    rating:rating1,
+    // rateSecond:rating2,
+    // rateThird:rating3,
+    // rateFourth:rating4,
+    // rateFifth:rating5,
     Title:movie,
     cnUser:user,
     cnMail:email,

@@ -19,7 +19,7 @@ var confirmSchema = mongoose.Schema({
   cnShowTime:String,
     cnAmount:String,
     cnNoTickets:String,
-   cnseatnumbers:Array,
+   cnseatnumbers:String,
    cnMail:String
  });
 var Confirm = mongoose.model('Confirm',confirmSchema,'confirmTable');

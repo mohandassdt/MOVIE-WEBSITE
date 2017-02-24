@@ -12,7 +12,7 @@ var theaterSchema = mongoose.Schema({
   TheaterName: String,
   location: String,
   // showTimemodel:String,
- showTime:String
+ showTime:Array
  });
 var Theater = mongoose.model('Theater',theaterSchema,'theaterTable');
 
