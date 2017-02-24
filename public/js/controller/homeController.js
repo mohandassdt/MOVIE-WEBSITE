@@ -11,14 +11,21 @@ module.exports = function($scope, $http, $rootScope,$location) {
   };
   refresh();
 
-
+$scope.searching
 
  $scope.bookTicket= function (m) {
 
-
+                    //  $scope.searching=$scope.m.moviTitle;
                      $rootScope.bookedMovie=m;
   $location.path('/moviebook');
           };
+
+          // $scope.submit= function (m) {
+          //
+          //                   $scope.searching=m;
+          //                     $rootScope.bookedMovie=m;
+          //  $location.path('/moviebook');
+          //          };
 
           $scope.Rate= function (m) {
 

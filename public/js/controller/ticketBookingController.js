@@ -8,7 +8,6 @@ $scope.seat=false;  var i;
 $rootScope.seatArrange=[];
 console.log(  $scope.movieinfo );
 
-
 // document.getElementById("datebook").value=date;
 
 
@@ -83,6 +82,7 @@ $scope.seatClicked=function(seatPos){
 // selected=document.getElementById("seatno").innerHTML;
 $scope.NumberOfSeats=selected.length;
 // $scope.book.seatnumbers=selected;
+$scope.book.totalAmnt=$scope.book.Amount*$scope.NumberOfSeats;
 
 
 }
@@ -90,15 +90,24 @@ $scope.NumberOfSeats=selected.length;
 
 $scope.d=function(){
   date=document.getElementById("datebook").value;
-alert(date);
+// alert(date);
 console.log(date);
 }
+//
+// $scope.e=function(){
+//   cityNmae=document.getElementById("citybook").value;
+// alert(cityNmae);
+// console.log(cityNmae);
+// }
+
+
+
+
 $scope.add =function()
 {
       // $scope.seat = true;
 
-
-      $scope.book.Day=date;
+$scope.book.Day=date;
   $scope.book.Title=$scope.movieinfo.moviTitle;
 console.log($scope.book.Title);
 console.log($scope.book.CityName);
@@ -160,15 +169,31 @@ try
 };
 
 
-
-
+//
+// $scope.touch=function(Booklist){
+//   $scope.book.Title=$scope.movieinfo.moviTitle;
+//   $http.post('/bok/bok', $scope.book).success(function (response) {
+//           console.log(response);
+//
+//       });
+//         refreshBookin();
+// }
 
 
 
 ///////////////////////////////////////////////////
 $scope.bk = function (Booklist) {
+  var arr = [];
+while(arr.length < 1){
+    var randomnumber = Math.ceil(Math.random()*100000)
+    if(arr.indexOf(randomnumber) > -1) continue;
+    arr[arr.length] = randomnumber;
+}
+$scope.book.bookingid= arr;
+console.log($scope.book.bookingid);
   $scope.book.Title=$scope.movieinfo.moviTitle;
 $scope.book.seatnumbers=selected;
+// $scope.book.seatnumber=
     console.log($scope.book);
     $http.post('/bok/bok', $scope.book).success(function (response) {
             console.log(response);
@@ -205,29 +230,64 @@ var refreshLocat = function () {
   refreshLocat();
   var uniqueNames = [];
 var uniqueObj = [];
+var uniqueHall=[];
+var uniqueTheat=[];
+
+
   var refreshMape = function () {
         $http.get('/map/map').success(function (response) {
             console.log('READ IS SUCCESSFUL');
             $scope.maplist = response;
+            console.log($scope.maplist);
             $scope.map = "";
 
 
                for(i = 0; i< $scope.maplist.length; i++){
+                 if($scope.maplist[i].Film==$scope.movieinfo.moviTitle){
                if(uniqueNames.indexOf($scope.maplist[i].City) === -1){
-                   uniqueObj.push($scope.maplist[i])
+                   uniqueObj.push($scope.maplist[i]);
                uniqueNames.push($scope.maplist[i].City);
-                    }
-           }
+
+          //      if($scope.maplist[i].City==$scope.book.CityName){
+          //    if(uniqueNames.indexOf($scope.maplist[i].City) === -1){
+          //        uniqueObj.push($scope.maplist[i]);
+          //    uniqueNames.push($scope.maplist[i].City);
+          //  }
+          //    }}
+        }
+           }}
            console.log(uniqueNames);
 
                console.log($scope.locMovie);
+console.log($scope.book.CityName);
+
+
+
+                          console.log(uniqueNames);
+                            console.log(uniqueNames);
+
+                              console.log($scope.locMovie);
+
         });
 
     };
     $scope.locMovie=uniqueNames;
+    $scope.loctheat=uniqueHall;
 
     refreshMape();
 
+$scope.sel=function(){
+  var j;
+  for( j= 0; j< $scope.maplist.length; j++){
+
+if($scope.maplist[j].Film==$scope.movieinfo.moviTitle&&$scope.maplist[j].City==$scope.book.CityName){
+  if(uniqueHall.indexOf($scope.maplist[j].Hall) === -1){
+      uniqueTheat.push($scope.maplist[j]);
+  uniqueHall.push($scope.maplist[j].Hall);
+console.log(uniqueHall);
+}}
+}
+}
   // var refreshMape = function () {
   //       $http.get('/map/map').success(function (response) {
   //           console.log('READ IS SUCCESSFUL');
@@ -269,36 +329,56 @@ var uniqueObj = [];
       }
 
       refreshTheat();
+      /////////////////////////
+
+      // (function() {
+      // 	 function IDGenerator() {
       //
-      // var refreshRating = function () {
-      //       $http.get('/rt/rt').success(function (response) {
-      //           console.log('Ratinggg READ IS SUCCESSFUL');
-      //           $scope.Ratinglist = response;
-      //           $scope.Rating = "";
-      //   });
-      //   };
+      // 		 this.length = 4;
+      // 		 this.timestamp = +new Date;
       //
-      //   refreshRating();
-  //
-  // $scope.Rating.rateFirst=value;
-  // $scope.Rating.rateSecond=2;
-  // $scope.Rating.rateThird=3;
-  // $scope.Rating.rateFourth=4;
-  // $scope.Rating.rateFifth=5;
-//
-//   $scope.rt1=function(){
-// console.log($scope.Rating.rateFirst);
-//     alert($scope.rateFirst);
-//
-//   }
-//   $scope.Total=function(){
-//     var sum=0;
-//   for (var i=0; i<5; i++)
-//   {
-//       sum += this.getField("Rating." + i).value;
-//   }
-//   event.value = sum / 5;
-//   }
+      // 		 var _getRandomInt = function( min, max ) {
+      // 			return Math.floor( Math.random() * ( max - min + 1 ) ) + min;
+      // 		 }
+      //
+      // 		 this.generate = function() {
+      // 			 var ts = this.timestamp.toString();
+      // 			 var parts = ts.split( "" ).reverse();
+      // 			 var id = "";
+      //
+      // 			 for( var i = 0; i < this.length; ++i ) {
+      // 				var index = _getRandomInt( 0, parts.length - 1 );
+      // 				id += parts[index];
+      // 			 }
+      //
+      // 			 return id;
+      // 		 }
+      //
+      //
+      // 	 }
+      //
+      //
+      // 	 document.addEventListener( "DOMContentLoaded", function() {
+      // 		var btn = document.querySelector( "#generate" ),
+      // 			output = document.querySelector( "#output" );
+      //
+      // 		btn.addEventListener( "click", function() {
+      // 			var generator = new IDGenerator();
+      // 			output.innerHTML = generator.generate();
+      //
+      // 		}, false);
+      //
+      // 	 });
+      //
+      //
+      //  })();
+
+
+
+
+
+
+
 
 
 
