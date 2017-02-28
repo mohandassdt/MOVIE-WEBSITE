@@ -6,10 +6,17 @@
       <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
       <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js">
+  </script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+
+<!-- @import url(//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css); -->
+
 <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.8/angular-filter.min.js"></script> -->
 <!-- <script>
@@ -26,28 +33,73 @@ module.exports = function($scope, $http) {
 </script> -->
 </head>
 <body ng-app="movieApp">
-<header style="height:20%">
+<header style="height:20%;">
   <div class="container-fluide">
   <div class="row" style="background-color:#615B5A">
-    <div class="col-sm-4"><img src="img/s1.png" class="img-circle" style="height: 80px;width: 111px;    margin-left: 76px;"></div>
-    <div class="col-sm-8"><h1  style="color:white;font-family: cursive;">MERA MOVIE.COM</h1></div>
+    <!-- <div class="col-sm-4"><img src="img/ld.png" style="height: 120px;width: 111px;    margin-left: 76px;"></div> -->
+    <div class="col-sm-12"><h1  style="color:white;font-family: cursive;text-align:center">MERA MOVIE.COM</h1></div>
   </div>
-  <div>
+  <div class="row">
+    <div class="col-sm-12">
   <nav class="navbar navbar-inverse" style="background-color:#615B5A">
     <ul class="nav navbar-nav">
       <li class="activate"><a href="#/">HOME</a></li>
       <li><a href="#/cancellation">CANCELLATION</a></li>
-      <!-- <li><a href="#/cancellation">CANCELLATION</a></li> -->
+      <li><a href="#/trailer">TRAILERS</a></li>
 
     </ul>
 
-    <ul class="nav navbar-nav navbar-right">
-  <li class="activate"><a href="#/booking"><span class="glyphicon glyphicon-user"></span>ADMIN</a></li>
-  <li style="margin-right: 46px;"><a href="#"><span class="glyphicon glyphicon-log-in"></span>LOGIN</a></li>
+    <ul class="nav navbar-nav navbar-right" style="margin-right: 39px;">
+
+<li class="activate" style="margin-right:46px;"><a href="#/register"><span class="glyphicon glyphicon-user"></span>REGISTER</a></li>
+
+      <li> <div ng-controller="BookingController as vm" >
+                      <a ng-if="vm.IsShow" ng-show="adminpg" href="#/booking">Admin</a></div>
+
+                    </li>
+
+                    <!-- <div ng-controller="AdminController as vm" >
+                        <a ng-if="vm.IsShow" ng-show="adminpg" href="#/admin">Admin</a>
+                        </div> -->
+
+                     <li>
+                        <div ng-controller="LoginController as vm" style="margin-left=-194%;margin-top:25%;">
+                        <div ng-if="!vm.IsShow">
+                        <a ng-click="vm.IsShow=!vm.IsShow" href="#/login" style="color:white"><span class="glyphicon glyphicon-log-in"></span> LOG IN</button>
+                        </div>
+                        <div ng-if="vm.IsShow" style="margin-left:-20%;margin-top:-9%;" >
+              <a href="#/home" ng-click="vm.IsShow=!vm.IsShow" style="color:white"><span class="glyphicon glyphicon-log-out"></span> LOGOUT</a>
+      <!-- <li ng-controller="AdminController as vm" >
+                            <a ng-if="vm.IsShow" ng-show="adminpg" href="#/booking">Admin</a>
+
+                          </li> -->
+
+  <!-- <li class="activate"><a href="#/register"><span class="glyphicon glyphicon-user"></span>REGISTER</a></li>
+  <li ng-controller="LoginController as vm" style="margin-right:29px;" ng-if="!vm.IsShow">
+    <a ng-click="vm.IsShow=!vm.IsShow" href="#/login" class="link"><span class="glyphicon glyphicon-log-in"></span> LOGIN</a></li>
+
+
+  <li style="margin-right:5px;" ng-if="vm.IsShow">
+    <a href="#/home" ng-click="vm.IsShow=!vm.IsShow" class="link"><span class="glyphicon glyphicon-log-in"></span> LOGOUT</a></li> -->
+
+<!--
+    <div ng-controller="AdminController as vm" >
+                          <a ng-if="vm.IsShow" ng-show="adminpg" href="#/admin">Admin</a>
+                          </div>
+                        </li>
+                       <li>
+                          <div ng-controller="LoginController as vm" style="margin-left: 29%;margin-top: 41%;">
+                          <div ng-if="!vm.IsShow">
+                          <a ng-click="vm.IsShow=!vm.IsShow" href="#/login" class="link">Login</button>
+                          </div>
+                          <div ng-if="vm.IsShow" style="margin-left: 28%;margin-top: 35%;" >
+                <a href="#/home" ng-click="vm.IsShow=!vm.IsShow" class="link">Logout</a> -->
+
+
     </ul>
 
 
-  </nav>
+  </nav></div></div></div></div>
 
        </header>
 <div ng-view style="height:50%"></div>
@@ -67,7 +119,7 @@ module.exports = function($scope, $http) {
 
 
 
-</div>
+
 
 <script type="text/javascript" src="/build/bundle.js"></script>
 </body>
