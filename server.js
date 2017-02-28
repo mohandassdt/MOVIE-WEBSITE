@@ -3,41 +3,20 @@ var logger = require('morgan');
 var express = require('express');
 var app = express();
 var bodyParser=require('body-parser');
+var path = require('path');
+var cookieParser = require('cookie-parser');//auth
+var expressValidator = require('express-validator');//auth
+var flash = require('connect-flash');//auth
+var session = require('express-session');//auth
+var passport = require('passport');//auth
+var localStrategy = require('passport-local').Strategy;
 
-var routes = require('./routes/movie-crud');
-var routesCity = require('./routes/city-crud');
-var routesTheater = require('./routes/theater-crud');
-var routesShow = require('./routes/showtime-crud');
-var routesMapping = require('./routes/mapping-crud');
-var routesConfirm = require('./routes/confirmation-crud');
-var routesBooking = require('./routes/booking-crud');
-var routesRating = require('./routes/rating-crud');
+// user schema/model
+var User = require('./models/user.js');
 
-
-
-
-app.use(express.static(__dirname + '/public'));
-app.use(bodyParser.json());
-
-app.use('/movie', routes);
-app.use('/cty', routesCity);
-app.use('/theater', routesTheater);
-app.use('/showt', routesShow);
-app.use('/map', routesMapping);
-app.use('/bok', routesBooking);
-app.use('/con', routesConfirm);
-app.use('/rt', routesRating);
-
-
-app.get('/', function(req, res) {
-  res.sendFile(path.join(__dirname, '../client', 'index.html'));
-});
-
-
-
+//Database
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
-
 var dbHost = 'mongodb://localhost:27017/test';
 mongoose.connect(dbHost);
 
@@ -46,6 +25,60 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function(){
   console.log("Connected to DB");
 });
+
+var auth =  require('./routes/auth');
+var routes = require('./routes/movie-crud');
+var routesCity = require('./routes/city-crud');
+var routesTheater = require('./routes/theater-crud');
+var routesShow = require('./routes/showtime-crud');
+var routesMapping = require('./routes/mapping-crud');
+var routesConfirm = require('./routes/confirmation-crud');
+var routesBooking = require('./routes/booking-crud');
+var routesRating = require('./routes/rating-crud');
+var trailerCrud=require('./routes/trailer-crud');
+
+
+
+// BodyParser Middleware
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+
+app.use(require('express-session')({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(express.static(path.join(__dirname, 'public')));
+
+// configure passport
+passport.use(new localStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+
+// app.use(express.static(__dirname + '/public'));
+// app.use(bodyParser.json());
+
+
+app.use('/user/', auth);
+app.use('/movie', routes);
+app.use('/cty', routesCity);
+app.use('/theater', routesTheater);
+app.use('/showt', routesShow);
+app.use('/map', routesMapping);
+app.use('/bok', routesBooking);
+app.use('/con', routesConfirm);
+app.use('/rt', routesRating);
+app.use('/trailerserver',trailerCrud);
+
+
+app.get('/', function(req, res) {
+  res.sendFile(path.join(__dirname, '../client', 'index.html'));
+});
+
 // Only load this middleware in dev mode (important).
 if (app.get('env') === 'development') {
   var webpackMiddleware = require("webpack-dev-middleware");
@@ -64,8 +97,19 @@ if (app.get('env') === 'development') {
   }));
 
 }
+app.use(function(req, res, next) {
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
+});
 
-
+app.use(function(err, req, res) {
+  res.status(err.status || 500);
+  res.end(JSON.stringify({
+    message: err.message,
+    error: {}
+  }));
+});
 
 var server = app.listen(8000, function () {
   console.log('listening on port 8000');
