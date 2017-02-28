@@ -10,12 +10,15 @@ router.use(bodyParser.urlencoded({ extended: true }));
 var mongoose = require('mongoose');
 
 var mappingSchema = mongoose.Schema({
+Poster:String,
+Year:String,
   Film:String,
   City:String,
   Hall:String,
   ShowTime:String,
 Language:String,
   From:String,
+  totalRating:String,
   To:String
  });
 var Mapping = mongoose.model('Mapping',mappingSchema, 'mappingTable');
@@ -39,20 +42,27 @@ router.get('/map/:id', function (req, res) {
 
 router.post('/map', function(req, res){
   console.log(req.body);
+  var pos=req.body.Poster;
+  var yr=req.body.Year;
+
   var film = req.body.Film;
   var city = req.body.City;
   var theat = req.body.Hall;
   var show = req.body.ShowTime;
-    var lang = req.body.Language;
+  var lang = req.body.Language;
+    var rtng = req.body.totalRating;
   var frm = req.body.From;
   var to = req.body.To;
 
 var mapping1 = new Mapping({
+  Poster:pos,
     Film:film,
+    Year:yr,
     City:city,
     Hall:theat,
     ShowTime:show,
     Language:lang,
+    totalRating:rtng,
     From:frm,
     To:to
 });
