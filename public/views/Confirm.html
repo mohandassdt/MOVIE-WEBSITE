@@ -1,4 +1,6 @@
 <div class="container">
+  <button class="btn btn-info btn-block">CONFIRMATION PAGE</button>
+
 <div class="table-responsive">
   <table class="table">
     <tr>
@@ -45,7 +47,7 @@
 <tr>
   <td><b>no of seats</b></td>
   <td>
-  <p>{{confirmInfo.NoTickets}}</p>
+  <p>{{confirmInfo.NumberOfSeats}}</p>
 </td>
 
 <tr>
@@ -57,25 +59,27 @@
 <tr>
   <td><b>User Name</b></td>
   <td>
-  <input type="text" ng-model="confirm.cnUser">
+  <input class="form-control" type="text" ng-model="confirm.cnUser" required>
 </td>
 </tr>
 <tr>
   <td><b>Mail ID</b></td>
   <td>
-  <input type="email" ng-model="confirm.cnMail">
+  <input class="form-control" type="email" ng-model="confirm.cnMail" required>
+  <!-- <span ng-show="confirm.cnMail.$error.required">Email is required.</span>
+<span ng-show="confirm.cnMail.$error.email">Invalid email address.</span> -->
 </td>
 </tr>
 <tr>
   <td><b>ACNT.NO</b></td>
   <td>
-  <input type="number">
+  <input class="form-control" type="text" required>
 </td>
 </tr>
 <tr>
-  <td><b>CDN</b></td>
+  <td><b>CVV</b></td>
   <td>
-  <input type="string">
+  <input class="form-control" type="string" required>
 </td>
 </tr>
 <tr>

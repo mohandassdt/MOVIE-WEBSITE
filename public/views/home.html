@@ -15,7 +15,7 @@
     <div class="carousel-inner" role="listbox">
 
       <div class="item active">
-        <img src="img/w2.jpg" alt="Chania">
+        <img src="img/w1.jpg" alt="Chania">
 
       </div>
 
@@ -30,7 +30,7 @@
       </div>
 
       <div class="item">
-        <img src="img/w1.jpg" alt="Flower">
+        <img src="img/w2.jpg" alt="Flower">
 
       </div>
 
@@ -141,31 +141,39 @@
 </ul>
 </div>
 </div> -->
-</div></div>
+</div>
 
-<div class="row"style="    margin-right: -15px;
-    margin-left: 150px; margin-top: 68px;">
-  <div style="padding:20px">
+<div class="row"style="margin-right:2px;
+    margin-left:50px; margin-top: 68px;">
+  <div style="padding:10px">
 
-    <select ng-model="movieLang">
-                <option value="">All</option>
+    <!-- <select ng-model="movieLang" class="form-control" style="width: 145px;margin-left: -46px;">
+
+                <option value="">Select Language</option>
         <option ng-repeat="m in moviList |unique:'moviLanguage'">{{m.moviLanguage}}</option>
-                </select>
+                </select> -->
+                <select ng-model="movieLang" class="form-control" style="width: 145px;margin-left: -46px;">
+
+                            <option value="">Select Language</option>
+                    <option ng-repeat="m in maplist |unique:'Language'">{{m.Language}}</option>
+                            </select>
+                <button class="btn btn-info btn-block" style="margin-left:100px;margin-top:-34px;width:93%">MOVIES</button>
               </div>
 
+
 <div>
-  <div ng-repeat="m in moviList | filter:movieLang | filter:searching" class="col-xs-6 col-sm-4 col-md-4">
+  <div ng-repeat="m in maplist| filter:movieLang |unique:'Film'| filter:searching" class="col-xs-6 col-sm-4 col-md-4">
 
  <div class="thumbnail" style="    width: 226px;
-    height: 428px; background-color: aliceblue;">
-    <img src="{{m.moviPoster}}" style="width:210px;height:210px;">
+    height: 460px; background-color: aliceblue;">
+    <img src="{{m.Poster}}" style="width:210px;height:210px;">
 
-  <p style="display:table-caption;margin-left:57px;padding:5px">
+  <p style="display:table-caption;margin-left:55px;padding:3px">
 <div class="caption">
-  <h4>{{m.moviTitle}}</h4>
-<p>{{m.moviYear}}</p>
-<p>{{m.moviLanguage}}</p>
-<p>Rating:<b>{{m.moviRating}}<span class="glyphicon glyphicon-heart" style="color:red"></span></b></p>
+  <h4>{{m.Film}}</h4>
+<p>{{m.Year}}</p>
+<p>{{m.Language}}</p>
+<p>Rating:<b>{{m.totalRating}}</b><span><img src="img/wat2.jpg" style="width:50px;height:50px"></span></p>
    <button ng-click="bookTicket(m)" class="btn btn-danger">BOOK</button>
    <button ng-click="Rate(m)" class="btn btn-info">RATE</button></p>
 </div></div>
@@ -174,7 +182,7 @@
 
 
 
-
+</div>
 </div>
 </div>
 </div>

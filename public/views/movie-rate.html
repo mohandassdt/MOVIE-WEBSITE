@@ -1,30 +1,6 @@
 <style>
 
-/*#rateStatus{
-float:left;
-clear:both;
-width:100%;
-height:20px;}
-#rateMe{
-float:left;
-clear:both;
-width:100%;
-height:auto;
-padding:0px;
-margin:0px;
-}
-#rateMe li{
-float:left;
-list-style:none;
-}
-#rateMe li a:hover,
-#rateMe .on{
-background:url(star_on.png) no-repeat;}
-#rateMe a{float:left;background:url(star_off.png)}
-#ratingSaved{
-display:none;
-}
-.saved{color:red; }*/
+
 
 
 
@@ -102,7 +78,7 @@ label.star:before {
 <div class="container">
   <div>
 
-    <img src="{{movieinfo.moviPoster}}" style="    width:480px;
+    <img src="{{movieinfo.Poster}}" style="    width:480px;
       height: 550px;
       float: right;"></div>
 
@@ -112,20 +88,20 @@ label.star:before {
   <tr>
     <td><b>Movie title</b></td>
     <td>
-    <p>{{movieinfo.moviTitle}}</p>
+    <p>{{movieinfo.Film}}</p>
 </td>
 </tr>
 <tr>
   <td><b>Year</b></td>
   <td>
-  <p>{{movieinfo.moviYear}}</p>
+  <p>{{movieinfo.Year}}</p>
 </td>
 </tr>
 
 <tr>
   <td><b>Language</b></td>
   <td>
-  <p>{{movieinfo.moviLanguage}}</p>
+  <p>{{movieinfo.Language}}</p>
 </td>
 </tr>
 
@@ -162,41 +138,31 @@ label.star:before {
 
 
 </td>
-</tr>
+</tr></table>
 
-<tr>
-  <td><b>User Name</b></td>
-  <td>
-  <input type="text" ng-model="rate.cnUser">
-</td>
-</tr>
 
-<tr>
-  <td><b>E-mail ID</b></td>
-  <td>
-<input type="email" ng-model="rate.cnMail">
-</td>
 
-<tr>
-  <td><b>Comments</b></td>
-  <td>
-    <form>
+  <div class="col-md-8">
+  <form class="form" name="myForm" ng-submit="doneRate()">
     <div class="form-group">
-      <label for="comment">Comment:</label>
-      <textarea ng-model="rate.comments" class="form-control" rows="5" cols="3" id="comment"></textarea>
+
+<b>Username</b><input type="text" class="form-control" name="username" ng-model="rate.cnUser" required ng-minlength="3"/>
+
     </div>
-
-    </form>
-</td>
-</tr>
-<tr>
-  <!-- <td>
-  </td> -->
-  <td><button ng-click="doneRate(rateList)"  class="btn btn-primary">DONE</button></td>
-  <td><button ng-click="confirmRate()" class="btn btn-success">SUBMIT</button></td>
-</tr>
-
-<table>
+    <div class="form-group">
+      <label>E-mail</label>
+        <input type="email" class="form-control" name="email" ng-model="rate.cnMail" required>
+      </div>
+      <div class="form-group">
+      <b>Comment</b>
+          <!-- <input type="text" class="form-control" ng-model="registerForm.mobile" minlength="10"> -->
+                <textarea ng-model="rate.comments" class="form-control" rows="5" cols="3"required></textarea>
+        </div>
+      <div>
+        <button type="submit" ng-click="doneRate()" class="btn btn-success" ng-disabled="myForm.$invalid">DONE</button>
+        <button ng-click="confirmRate()" class="btn btn-success">SUBMIT</button>
+      </div>
+  </form></div>
 </div>
 
 

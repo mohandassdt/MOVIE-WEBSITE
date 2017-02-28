@@ -5,7 +5,7 @@
 
 
 
-<img src="{{movieinfo.moviPoster}}" style="width:300px;height:400px;float: left;">
+<img src="{{movieinfo.Poster}}" style="width:300px;height:400px;float: left;">
 
 
 
@@ -17,14 +17,14 @@
   <tr>
     <td><b>Movie title</b></td>
     <td>
-    <p>{{movieinfo.moviTitle}}</p>
+    <p>{{movieinfo.Film}}</p>
 </td>
   <!-- <td>ng-model="book.FilmName"{{movieinfo.moviTitle}} </td> -->
 </tr>
 
 <tr>
   <td><b>Select City</b></td>
-  <td><select id="select" ng-model="book.CityName" ng-change="sel()">
+  <td><select id="select" ng-model="book.CityName" ng-change="sel()" required>
         <option ng-repeat="l in locMovie" value="{{l}}" >{{l}}</option>
   </select></td>
   <!-- <td><select ng-blur="e()" ng-model="book.CityName">
@@ -33,33 +33,30 @@
 </tr>
 <tr>
   <td><b>Select Theater</b></td>
-  <td><select ng-model="book.HallName">
+  <td><select ng-model="book.HallName" required>
         <option ng-repeat="t in loctheat" value="{{t}}">{{t}}</option>
   </select></td>
 </tr>
 <tr>
   <td><b>Select Date</td>
-  <td> <input ng-blur="d()" type="date" id="datebook"/></td>
+  <td> <input ng-blur="d()" type="date" id="datebook" required/></td>
  </tr>
  <tr>
    <td><b>Select Show Time</b></td>
    <td>
-  <select ng-model="book.ShowTime" ng-change="showseat()">
+  <select ng-model="book.ShowTime" ng-change="showseat()" required>
         <option ng-repeat="map in maplist|filter:movieinfo.moviTitle |filter:book.HallName">{{map.ShowTime}}</option>
   </select></td>
 </tr>
 <tr>
   <td><b>Amount</b></td>
   <td>
- <select ng-model="book.Amount">
-        <option>50</option>
-       <option>100</option>
-       <option>150</option>
- </select></td>
+    <p>150</p>
+</td>
 
 </tr>
 
-<tr>
+<!-- <tr>
   <td><b>Select Number Of Tickets</b></td>
   <td>
  <select ng-model="book.NoTickets">
@@ -71,7 +68,7 @@
 
  </select></td>
 
-</tr>
+</tr> -->
 
 
 
@@ -133,8 +130,7 @@
 
   <tr>
     <td><b>No Of seats</b></td>
-  <td><p>{{NumberOfSeats}}</p></td>
-  </tr><p><code id="output"></code></p>
+  <td><p>{{book.NumberOfSeats}}</p></td></tr>
   <!-- <tr>
     <td><b>booking id</b></td>
   <td><p><code id="output"></code></p></td>

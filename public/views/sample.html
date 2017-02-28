@@ -1,5 +1,5 @@
 <style>
-/*body { padding-top: 60px; }*/
+body { padding-top: 60px; }
 .nav.nav-justified > li > a { position: relative; }
 .nav.nav-justified > li > a:hover,
 .nav.nav-justified > li > a:focus { background-color: transparent; }
@@ -22,8 +22,8 @@
     opacity: .3;
     -webkit-transform: scale(.8,.8);
             transform: scale(.8,.8);
-    -webkit-transition: all 0.3s 0s cubic-bezier(0.165, 0.875, 0.22, 1.265);
-            transition: all 0.3s 0s cubic-bezier(0.165, 0.875, 0.22, 1.265);
+    -webkit-transition: all 0.3s 0s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.3s 0s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 .nav.nav-justified > li.active > a > img,
 .nav.nav-justified > li:hover > a > img,
@@ -31,12 +31,12 @@
     opacity: 1;
     -webkit-transform: none;
             transform: none;
-    -webkit-transition: all 0.3s 0s cubic-bezier(0.165, 0.875, 0.22, 1.265);
-            transition: all 0.3s 0s cubic-bezier(0.165, 0.875, 0.22, 1.265);
+    -webkit-transition: all 0.3s 0s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.3s 0s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-.tab-pane .tab-inner { padding: 25px 0 20px; }
+.tab-pane .tab-inner { padding: 30px 0 20px; }
 
-(min-width: 768px) {
+@media (min-width: 768px) {
     .nav.nav-justified > li > a > .quote {
         left: auto;
         top: auto;
@@ -47,90 +47,105 @@
 </style>
 
 
-<div class="container">
-<div class="row ">
-<div class="col-sm-12" role="tabpanel">
+<div class="[ container text-center ]">
+<div class="[ row ]">
+<div class="[ col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 ]" role="tabpanel">
 <div class="[ col-xs-4 col-sm-12 ]">
 <!-- Nav tabs -->
 <ul class="[ nav nav-justified ]" id="nav-tabs" role="tablist">
 <li role="presentation" class="active">
 <a data-target="#dustin" aria-controls="dustin" role="tab" data-toggle="tab">
-<img class="img-circle" src="img/sh1.jpg" />
-<!-- <span class="quote"><i class="fa fa-quote-left"></i></span> -->
+<img class="img-circle" src="https://s3.amazonaws.com/uifaces/faces/twitter/dustinlamont/128.jpg" />
+<span class="quote"><i class="fa fa-quote-left"></i></span>
 </a>
 </li>
 <li role="presentation" class="">
 <a data-target="#daksh" aria-controls="daksh" role="tab" data-toggle="tab">
-<img class="img-circle" src="img/lc1.jpg" />
-<!-- <span class="quote"><i class="fa fa-quote-left"></i></span> -->
+<img class="img-circle" src="https://s3.amazonaws.com/uifaces/faces/twitter/dakshbhagya/128.jpg" />
+<span class="quote"><i class="fa fa-quote-left"></i></span>
 </a>
 </li>
 <li role="presentation" class="">
 <a data-target="#anna" aria-controls="anna" role="tab" data-toggle="tab">
-<img class="img-circle" src="img/th2.jpg"/>
-<!-- <span class="quote"><i class="fa fa-quote-left"></i></span> -->
+<img class="img-circle" src="https://s3.amazonaws.com/uifaces/faces/twitter/annapickard/128.jpg" />
+<span class="quote"><i class="fa fa-quote-left"></i></span>
 </a>
 </li>
 <li role="presentation" class="">
 <a  data-target="#wafer" aria-controls="wafer" role="tab" data-toggle="tab">
-<img class="img-circle" src="img/cin1.jpg" />
-<!-- <span><h3>MOVIES</h1></span> -->
+<img class="img-circle" src="https://s3.amazonaws.com/uifaces/faces/twitter/waferbaby/128.jpg" />
+<span class="quote"><i class="fa fa-quote-left"></i></span>
 </a>
 </li>
 <li role="presentation" class="">
 <a  data-target="#Map" aria-controls="wafer" role="tab" data-toggle="tab">
-<img class="img-circle" src="img/mp.jpg" />
-<!-- <span class="quote"><i class="fa fa-quote-left"></i></span> -->
+<img class="img-circle" src="https://s3.amazonaws.com/uifaces/faces/twitter/waferbaby/128.jpg" />
+<span class="quote"><i class="fa fa-quote-left"></i></span>
 </a>
 </li>
 </ul>
 </div>
-<div class="[ col-xs-12 col-sm-12 ]">
+<div class="[ col-xs-8 col-sm-12 ]">
 <!-- Tab panes -->
 <div class="tab-content" id="tabs-collapse">
 <div role="tabpanel" class="tab-pane fade in active" id="dustin">
-<div class="tab">
-  <form class="form" name="myForm" ng-submit="addShow()">
-    <div class="form-group">
-      <label>Show time</label>
-      <input type="text" class="form-control" style="width: 25%;" name="username" ng-model="tim.showTime" minlength="1" required>
-</div>
-<div style="margin-left: 28%;margin-top: -4%;">
+<div class="tab-inner">
+  <table class="table">
+  <thead>
+  <tr>
 
-        <button type="submit" ng-disabled="myForm.$invalid" ng-click="addShow()" class="btn btn-primary">Add Time</button>
-        <button ng-click="updateShow()" class="btn btn-primary">Update</button>
-      </div>
-  </form>
+  <th>Show time</th>
 
-    <table class="table" style="margin-top: 17px;">
+
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+
+
+  <td><input class="form-control" ng-model="tim.showTime"/></td>
+
+  <td><button ng-click="addShow()" class="btn btn-primary">Add Time</button></td>
+  <td><button ng-click="updateShow()" class="btn btn-primary">Update</button></td>
+
+  </tr>
   <tr ng-repeat="tim in timlist">
 
   <td>{{tim.showTime}}</td>
 
-  <td><button ng-click="removeShow(tim)" class="btn btn-danger">Remove</button>
-  <button ng-click="editShow(tim)" class="btn btn-primary">Edit</button></td>
-</tr></table>
-
-
+  <td><button ng-click="removeShow(tim)" class="btn btn-danger">Remove</button></td>
+  <td><button ng-click="editShow(tim)" class="btn btn-primary">Edit</button></td>
+  </tr>
+  </tbody>
+  </table>
+<!-- <p class="lead">Etiam tincidunt enim et pretium efficitur. Donec auctor leo sollicitudin eros iaculis sollicitudin.</p>
+<hr>
+<p><strong class="text-uppercase">Dustin Lamont</strong></p>
+<p><em class="text-capitalize"> Senior web developer</em> at <a href="#">Apple</a></p> -->
 </div>
 </div>
 
 <div role="tabpanel" class="tab-pane fade" id="daksh">
 <div class="tab-inner">
+  <table class="table">
+<thead>
+<tr>
 
-  <form class="form" name="myForm" ng-submit="addCity()">
-    <div class="form-group">
-      <label>City Name</label>
-      <input type="text" class="form-control" style="width: 25%;" name="city" ng-model="loc.cityName" required>
-</div>
-<div style="margin-left: 28%;margin-top: -4%;">
-        <!-- <button type="submit" class="btn btn-success" ng-disabled="disabled">Register</button> -->
-        <button type="submit" ng-disabled="myForm.$invalid" ng-click="addCity()" class="btn btn-primary">Add City</button>
-        <button type="submit" ng-disabled="disabled"ng-click="updateCity()" class="btn btn-primary">Update</button>
-      </div>
-  </form>
-  <table class="table" style="margin-top: 17px;">
-<tboby>
+<th>City Name</th>
+
+
+</tr>
+</thead>
+<tbody>
+<tr>
+
+
+<td><input class="form-control" ng-model="loc.cityName"/></td>
+
+<td><button ng-click="addCity()" class="btn btn-primary">Add City</button></td>
+<td><button ng-click="updateCity()" class="btn btn-primary">Update</button></td>
+
+</tr>
 <tr ng-repeat="loc in loclist">
 
 <td>{{loc.cityName}}</td>
@@ -141,37 +156,64 @@
 </tbody>
 </table>
 
+
+
+
+<!-- <p class="lead">Suspendisse dictum gravida est, nec consequat tortor venenatis a. Suspendisse vitae venenatis sapien.</p>
+<hr>
+<p><strong class="text-uppercase">Daksh Bhagya</strong></p>
+<p><em class="text-capitalize"> UX designer</em> at <a href="#">Google</a></p> -->
 </div>
 </div>
 
 <div role="tabpanel" class="tab-pane fade" id="anna">
 <div class="tab-inner">
-  <form class="form" name="myForm" ng-submit="addTheater()">
-    <div>
-    <label>Theater Name</label>
-    <input style="width:15%;"class="form-control" ng-model="thtre.TheaterName" required/></div>
-      <div style="margin-left: 16%;margin-top: -5.5%;"><label>City</label>
-    <select class="form-control" style="width:15%;" ng-model="thtre.location" required>
-    <option  ng-repeat="loc in loclist">{{loc.cityName}}</option>
-  </select></div>
-      <div style="margin-left: 30%;margin-top:-5.5%;"><label>Show Time</label>
-        <select id="selecttime" class="form-control" style="width:15%;">
-      <option ng-repeat="tim in timlist">{{tim.showTime}}</option>
+  <table class="table">
+  <thead>
+  <tr>
 
-    </select></div>
+  <th>Theater Name</th>
+  <th>City</th>
+  <th>Show time</th>
 
-    <button id="add" style="margin-left:42%;margin-top:-6.4%;" class="btn btn-primary">Add Time</button>
-             <div style="margin-left:51%;margin-top:-8%;">
-            <select id="time" ng-model="thtre.showTime" multiple class="form-control" style="width:15%;" required></select></div>
-            <div style="margin-left:62%;margin-top:-5.4%;">
-        <button type="submit" ng-disabled="myForm.$invalid" ng-click="addTheater()" class="btn btn-primary">Add</button>
-        <button type="submit"  ng-click="updateTheater()" class="btn btn-primary">Update</button>
-      </div>
-  </form>
-  <table class="table" style="margin-top:90px;">
-
+  </tr>
+  </thead>
   <tbody>
+  <tr>
 
+
+  <td><input class="form-control" ng-model="thtre.TheaterName"/></td>
+  <td>
+  <div class="form-group">
+
+  <select class="form-control" ng-model="thtre.location">
+  <option ng-repeat="loc in loclist">{{loc.cityName}}</option>
+
+  </select></div></td>
+
+
+  <td>
+    <div>
+      <select id="selecttime" class="form-control" >
+    <option ng-repeat="tim in timlist">{{tim.showTime}}</option>
+
+  </select>
+  </div>
+  </td>
+  <td>
+    <div>
+
+  <td><button id="add" class="btn btn-primary">Add Time</button></td>
+  </div>
+         <div>
+                 <td><select id="time" ng-model="thtre.showTime" multiple class="form-control" ></select></td>
+
+    </div></td>
+
+  <td><button ng-click="addTheater()" class="btn btn-primary">Add Theater</button></td>
+  <td><button ng-click="updateTheater()" class="btn btn-primary">Update</button></td>
+
+  </tr>
   <tr ng-repeat="thtre in thtrelist">
 
   <td>{{thtre.TheaterName}}</td>
@@ -189,25 +231,19 @@
 
 <div role="tabpanel" class="tab-pane fade" id="wafer">
 <div class="tab-inner">
-<form class="form" name="myForm" ng-submit="addMovie()">
-  <div><label>Movie Name</label>
-  <input class="form-control" ng-model="movi.moviTitle" style="width:15%;" placeholder="Title" required/>
-</div>
-<div style="margin-left: 15%;margin-top: -5.2%;">
-    <label>Movie Year</label>
-    <input class="form-control" ng-model="movi.moviYear" style="width:15%;" placeholder="Year"/>
-</div>
-<div style="margin-left:29%;margin-top:-3%;">
-<button ng-click="addMovie(movi)" ng-disabled="myForm.$invalid"class="btn btn-primary">Add </button>
-<button ng-click="updateMovie()"  class="btn btn-primary">Update</button>
-</div>
-</form>
-<table>
-<tbody>
+  <table>
+  <tbody>
+  <tr>
+  <th>Movie Name</th>
+  <th>Movie Year</th> </tr>
+  <tr><td><input class="form-control" ng-model="movi.moviTitle" placeholder="Title"/></td>
+    <td><input class="form-control" ng-model="movi.moviYear" placeholder="Year"/></td>
+  <td><button ng-click="addMovie(movi)" class="btn btn-primary">Add </button></td>
+  <td><button ng-click="updateMovie()" class="btn btn-primary">Update</button></td></tr>
   <tr ng-repeat="m in moviList">
   <td>{{m.moviTitle}}</td>
-  <td>{{m.moviGenre}}</td>
-  <td>{{m.moviDirector}}</td>
+  <td>{{m.moviYear}}</td>
+  <td>{{m.moviLanguage}}</td>
 
   <td><img src="{{m.moviPoster}}" style="width:100px;height:100px;"></td>
 
@@ -265,7 +301,7 @@
 
   <option ng-repeat="th in thtrelist |filter:map.City">{{th.TheaterName}}</option>
   </select></div></td>
-
+  ct></div></td> -->
   <td>
   <select class="form-control" id="selecttime" ng-model="map.ShowTime">
      <optgroup label="Select" ng-repeat="t in thtrelist| filter:map.Hall">
