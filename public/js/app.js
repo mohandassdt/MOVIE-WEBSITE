@@ -3,11 +3,16 @@
 
 var angular = require('angular');
 require('angular-route');
-// var app = angular.module('movieApp', ['angular.filter']);
-var app = angular.module('movieApp', [ 'ngRoute']);
+window.$ = window.jQuery = require('jquery');
+require('bootstrap');
+require('angularjs-dropdown-multiselect');
+// require('../css/app.scss');
 
-require('./service');
+var app = angular.module('movieApp', [ 'ngRoute', 'angularjs-dropdown-multiselect' ]);
+
+
 require('./controller');
+require('./service');
 
 app.filter('unique', function() {
 
@@ -34,96 +39,87 @@ app.filter('unique', function() {
 });
 
 
+
+
 app.config(function($routeProvider) {
 
   $routeProvider.when('/home', {
     templateUrl: 'views/home.html',
     controller: 'HomeController',
   })
+
+  .when('/login', {
+      templateUrl: 'views/login.html',
+      controller: 'LoginController',
+      access: {restricted: false}
+    })
+    .when('/logout', {
+      controller: 'LogoutController',
+      access: {restricted: true}
+    })
+    .when('/register', {
+      templateUrl: 'views/register.html',
+      controller: 'RegisterController',
+      access: {restricted: false}
+    })
   .when('/booking', {
     templateUrl: 'views/booking.html',
     controller: 'BookingController',
-  })
-  .when('/cancellation', {
-    templateUrl: 'views/cancellation.html',
-    controller: 'CancellationController',
-  })
-  .when('/moviebook', {
-    templateUrl: 'views/moviebook.html',
-    controller: 'TicketBookingController',
-  })
-  .when('/movie-rate', {
-    templateUrl: 'views/movie-rate.html',
-    controller: 'RateController',
-  })
-  .when('/Confirm', {
-    templateUrl: 'views/Confirm.html',
-    controller: 'ConfirmController',
-  })
-  .otherwise({
-    redirectTo: '/home',
+    access: {restricted: true}})
+    .when('/cancellation', {
+      templateUrl: 'views/cancellation.html',
+      controller: 'CancellationController',
+    })
+    .when('/moviebook', {
+      templateUrl: 'views/moviebook.html',
+      controller: 'TicketBookingController',
+    })
+    .when('/trailer', {
+      templateUrl: 'views/trailer.html',
+      controller: 'HomeController',
+
+    })
+    .when('/register', {
+      templateUrl: 'views/register.html',
+      controller: 'RegisterController',
+    })
+    .when('/movie-rate', {
+      templateUrl: 'views/movie-rate.html',
+      controller: 'RateController',
+    })
+    .when('/Confirm', {
+      templateUrl: 'views/Confirm.html',
+      controller: 'ConfirmController',
+    })
+    .when('/sample', {
+      templateUrl: 'views/sample.html',
+      controller: 'SampleController',
+    })
+    // .when('/dustin', {
+    //   templateUrl: 'views/sample.html/dustin',
+    //   controller: 'SampleController',
+    // })
+
+
+
+
+    .otherwise({
+      redirectTo: '/home',
+    });
+
+
+
+});
+
+app.run(function ($rootScope, $location, $route, AuthService) {
+  $rootScope.$on('$routeChangeStart',
+    function (event, next, current) {
+      AuthService.getUserStatus()
+      .then(function(){
+        if (next.access.restricted && !AuthService.isLoggedIn()){
+          $location.path('/login');
+          $route.reload();
+        }
+      });
   });
-
-
-  // app.filter('unique', function() {
-  //     return function(input, key) {
-  //         var unique = {};
-  //         var uniqueList = [];
-  //         for(var i = 0; i < input.length; i++){
-  //             if(typeof unique[input[i][key]] == "undefined"){
-  //                 unique[input[i][key]] = "";
-  //                 uniqueList.push(input[i]);
-  //             }
-  //         }
-  //         return uniqueList;
-  //     };
-  // });
-
-
-
-
-  // here we define our unique filter
-  // app.filter('unique', function() {
-  //
-  //    return function(collection, keyname) {
-  //
-  //       var output = [],
-  //           keys = [];
-  //
-  //       angular.forEach(collection, function(item) {
-  //           var key = item[keyname];
-  //           if(keys.indexOf(key) === -1) {
-  //
-  //               keys.push(key);
-  //
-  //               output.push(item);
-  //           }
-  //       });
-  //
-  //       return output;
-  //    };
-  // });
-// app.filter('unique', function() {
-//
-//    return function(collection, keyname) {
-//
-//       var output = [],
-//           keys = [];
-//
-//
-//       angular.forEach(collection, function(item) {
-//
-//           var key = item[keyname];
-//
-//           if(keys.indexOf(key) === -1) {
-//
-//               keys.push(key);
-//
-//               output.push(item);
-//           }
-//       });
-//
-//       return output;
-//    };
-// });
 });
