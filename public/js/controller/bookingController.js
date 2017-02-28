@@ -3,6 +3,11 @@
 module.exports = function($scope, $http,$log) {
   $scope.booking = 'booking';
 
+  var self = this;
+self.submit = function() {
+   console.log('sucesssss form');
+};
+
   // var refresh = function () {
   //       $http.get('/movie/movie').success(function (response) {
   //           console.log('READ IS SUCCESSFUL');
@@ -49,14 +54,14 @@ module.exports = function($scope, $http,$log) {
 //             refresh5();
 //         });
 //     };
-
-$scope.hall1=function(){
-  alert($scope.map.Hall);
-  var th_name=document.getElementById("thname").value;
-  $scope.th=th_name;
-  alert($scope.th);
-  console.log($scope.th);
-}
+//
+// $scope.hall1=function(){
+//   alert($scope.map.Hall);
+//   var th_name=document.getElementById("thname").value;
+//   $scope.th=th_name;
+//   alert($scope.th);
+//   console.log($scope.th);
+// }
 
 var refresh = function() {
     $http.get('/movie/movie').success(function(response) {
@@ -69,7 +74,10 @@ var refresh = function() {
 refresh();
 
 $scope.addMovie = function(movi) {
-    $http.get(`http://www.omdbapi.com/?t=${movi.moviTitle}&plot=short&r=json`).success(function(response) {
+    // $http.get(`http://www.omdbapi.com/?t=${movi.moviTitle}&plot=short&r=json`).success(function(response) {
+      $http.get('http://www.omdbapi.com/?t='+$scope.movi.moviTitle+'&y='+$scope.movi.moviYear+'&plot=short&r=json').success(function (response){
+
+
         //console.log(response);
         var movieObj = {};
         for (var key in response) {
@@ -290,23 +298,26 @@ var refreshSho = function () {
             console.log('READ IS SUCCESSFUL');
             $scope.maplist = response;
             $scope.map = "";
-            
+
         });
     };
 
     refreshMape();
-
+var i;
     $scope.addMap = function () {
-  //     var app = angular.module('movieApp', []);
-  // app.controller('myCtrl', function($scope) {
-  //     $scope.count = 0;
-  // });
-        console.log($scope.map);
+
+  for(i=0;i<$scope.moviList.length;i++){
+    console.log($scope.moviList[i].moviTitle);
+  if($scope.map.Film==$scope.moviList[i].moviTitle){
+    $scope.map.Poster=$scope.moviList[i].moviPoster;
+    $scope.map.Year=$scope.moviList[i].moviYear;
+
+    console.log($scope.map);
         $http.post('/map/map',$scope.map).success(function (response) {
             console.log(response);
             console.log("CREATE IS SUCCESSFUL");
             refreshMape();
-        });
+        });  }}
     };
 
     $scope.removeMap = function (id) {

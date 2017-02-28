@@ -65,24 +65,34 @@ refreshConfirm();
 
 
 $scope.seatClicked=function(seatPos){
+  // if($scope.NumberOfSeats>$scope.book.NoTickets){
   var index = selected.indexOf(seatPos);
    if(index != -1) {
        // seat already selected, remove
        selected.splice(index, 1)
    } else {
        // new seat, push
+
+
        selected.push(seatPos);
         console.log(selected);
-        // $rootScope.seatArrange=selected;
-        // console.log($rootScope.seatArrange);
+
+
+
 
 
         document.getElementById("seatno").innerHTML=selected;
         // document.getElementById('myImage').src="img/seat1.gif";
 // selected=document.getElementById("seatno").innerHTML;
-$scope.NumberOfSeats=selected.length;
-// $scope.book.seatnumbers=selected;
-$scope.book.totalAmnt=$scope.book.Amount*$scope.NumberOfSeats;
+$scope.book.NumberOfSeats=selected.length;
+$scope.book.totalAmnt=150*$scope.book.NumberOfSeats;
+if($scope.NumberOfSeats>$scope.book.NoTickets){
+  alert("You cannot book more seats than you selected");
+}
+$scope.book.seatnumbers=selected;
+
+
+
 
 
 }
@@ -108,7 +118,7 @@ $scope.add =function()
       // $scope.seat = true;
 
 $scope.book.Day=date;
-  $scope.book.Title=$scope.movieinfo.moviTitle;
+  $scope.book.Title=$scope.movieinfo.Film;
 console.log($scope.book.Title);
 console.log($scope.book.CityName);
 console.log($scope.book.HallName);
@@ -192,6 +202,7 @@ while(arr.length < 1){
 $scope.book.bookingid= arr;
 console.log($scope.book.bookingid);
   $scope.book.Title=$scope.movieinfo.moviTitle;
+
 $scope.book.seatnumbers=selected;
 // $scope.book.seatnumber=
     console.log($scope.book);
@@ -243,7 +254,7 @@ var uniqueTheat=[];
 
 
                for(i = 0; i< $scope.maplist.length; i++){
-                 if($scope.maplist[i].Film==$scope.movieinfo.moviTitle){
+                 if($scope.maplist[i].Film==$scope.movieinfo.Film){
                if(uniqueNames.indexOf($scope.maplist[i].City) === -1){
                    uniqueObj.push($scope.maplist[i]);
                uniqueNames.push($scope.maplist[i].City);
@@ -280,7 +291,7 @@ $scope.sel=function(){
   var j;
   for( j= 0; j< $scope.maplist.length; j++){
 
-if($scope.maplist[j].Film==$scope.movieinfo.moviTitle&&$scope.maplist[j].City==$scope.book.CityName){
+if($scope.maplist[j].Film==$scope.movieinfo.Film&&$scope.maplist[j].City==$scope.book.CityName){
   if(uniqueHall.indexOf($scope.maplist[j].Hall) === -1){
       uniqueTheat.push($scope.maplist[j]);
   uniqueHall.push($scope.maplist[j].Hall);

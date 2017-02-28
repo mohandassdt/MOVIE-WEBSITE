@@ -11,7 +11,19 @@ module.exports = function($scope, $http, $rootScope,$location) {
   };
   refresh();
 
-$scope.searching
+
+  var refreshMape = function () {
+        $http.get('/map/map').success(function (response) {
+            console.log('READ IS SUCCESSFUL');
+            $scope.maplist = response;
+            $scope.map = "";
+
+        });
+    };
+
+    refreshMape();
+
+// $scope.searching
 
  $scope.bookTicket= function (m) {
 

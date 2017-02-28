@@ -7,32 +7,49 @@ $scope.movieinfo = $rootScope.bookedMovie;
 
 console.log(  $scope.movieinfo );
 
+
 var refreshRate = function() {
     $http.get('/rt/rt').success(function(response) {
         console.log('ratingg IS SUCCESSFUL');
         $scope.rateList = response;
         $scope.rate = "";
+        // $scope.rate.cnMail='';
     });
 };
 refreshRate();
 
-var refresh = function() {
-    $http.get('/movie/movie').success(function(response) {
-        console.log('READ IS SUCCESSFUL');
-        $scope.moviList = response;
-        $scope.movi = "";
-        // $scope.movieObj=$scope.moviList;
-    });
-};
+// var refresh = function() {
+//     $http.get('/map/map').success(function(response) {
+//         console.log('READ IS SUCCESSFUL');
+//         $scope.maplist = response;
+//         $scope.maplist = "";
+//         // $scope.movieObj=$scope.moviList;
+//     });
+// };
+//
+//
+// refresh();
 
-refresh();
+var refreshMape = function () {
+      $http.get('/map/map').success(function (response) {
+          console.log('READ IS SUCCESSFUL');
+          $scope.maplist = response;
+          $scope.map = "";
+
+      });
+  };
+
+  refreshMape();
+  var self = this;
+self.submit = function() {
+    console.log('Form is submitted with following user', self.user);}
 var cnt=0;
 
 $scope.doneRate= function (rateList) {
-  $scope.rate.Title=$scope.movieinfo.moviTitle;
-$scope.rate.moviYear=$scope.movieinfo.moviYear;
+  $scope.rate.Title=$scope.movieinfo.Film;
+$scope.rate.moviYear=$scope.movieinfo.Year;
 
-  $scope.rate.moviLanguage=$scope.movieinfo.moviLanguage;
+  $scope.rate.moviLanguage=$scope.movieinfo.Language;
   // var mname=$scope.rate.Title;
   $http.post('/rt/rt', $scope.rate).success(function (response) {
             console.log(response);
@@ -69,7 +86,6 @@ $scope.rate.moviYear=$scope.movieinfo.moviYear;
 
                   });
                   });
-            //  $("#myModal").modal();
 
            }
 
@@ -80,16 +96,17 @@ refreshRate();
 $scope.confirmRate= function () {
                           console.log("REACHED UPDATE");
                           var i;
-                          for(i=0;i<=$scope.moviList.length;i++){
+                          for(i=0;i<=$scope.maplist.length;i++){
 
-                                  if($scope.moviList[i].moviTitle== $scope.rate.Title){
-                  console.log($scope.moviList[i]._id);
+                                  if($scope.maplist[i].Film== $scope.rate.Title){
+                  console.log($scope.maplist[i]._id);
 
-                            $scope.moviList[i].moviRating=$scope.rate.Total;
-                            console.log($scope.moviList[i]);
-                            $http.put('/movie/movie/' + $scope.moviList[i]._id, $scope.moviList[i]).success(function (response) {
+                            $scope.maplist[i].totalRating=$scope.rate.Total;
+                            console.log($scope.maplist[i]);
+                            $http.put('/map/map/' + $scope.maplist[i]._id, $scope.maplist[i]).success(function (response) {
                                 console.log(response);
-                                refresh();
+                                refreshMape();
+                                alert("rating succesfull");
                                 $location.path('/home');
                               })
                             }

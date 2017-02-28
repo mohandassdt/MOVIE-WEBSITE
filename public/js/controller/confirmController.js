@@ -29,7 +29,7 @@ $scope.confirm.cnbookingid=$scope.confirmInfo.bookingid;
   $scope.confirm.cnDay=$scope.confirmInfo.Day;
   $scope.confirm.cnShowTime=$scope.confirmInfo.ShowTime;
   $scope.confirm.cnAmount=$scope.confirmInfo.Amount;
-  $scope.confirm.cnNoTickets=$scope.confirmInfo.NoTickets;
+  $scope.confirm.cnNoTickets=$scope.confirmInfo.NumberOfSeats;
   $scope.confirm.cnseatnumbers=$scope.confirmInfo.seatnumbers;
   $scope.confirm.cnAmount=$scope.confirmInfo.totalAmnt;
 
@@ -38,7 +38,7 @@ $scope.confirm.cnbookingid=$scope.confirmInfo.bookingid;
 
     $http.post('/con/con', $scope.confirm).success(function (response) {
             console.log(response);
-alert("booking success...Thank You!!")
+alert("booking success...Thank You!!  PLEASE NOTE YOUR BOOKING ID AND SEAT NUMBERS")
             $location.path('/home');
 
 
