@@ -33,7 +33,7 @@
 </tr>
 <tr>
   <td><b>Select Theater</b></td>
-  <td><select ng-model="book.HallName" required>
+  <td><select ng-model="book.HallName" ng-change="tick()" required>
         <option ng-repeat="t in loctheat" value="{{t}}">{{t}}</option>
   </select></td>
 </tr>
@@ -45,7 +45,7 @@
    <td><b>Select Show Time</b></td>
    <td>
   <select ng-model="book.ShowTime" ng-change="showseat()" required>
-        <option ng-repeat="map in maplist|filter:movieinfo.moviTitle |filter:book.HallName">{{map.ShowTime}}</option>
+        <option ng-repeat="s in Showtime" value="{{s}}">{{s}}</option>
   </select></td>
 </tr>
 <tr>

@@ -1,3 +1,6 @@
+<head>
+
+
 <style>
 /*body { padding-top: 60px; }*/
 .nav.nav-justified > li > a { position: relative; }
@@ -46,7 +49,7 @@
 }
 </style>
 
-
+</head>
 <div class="container">
 <div class="row ">
 <div class="col-sm-12" role="tabpanel">
@@ -118,14 +121,14 @@
 <div role="tabpanel" class="tab-pane fade" id="daksh">
 <div class="tab-inner">
 
-  <form class="form" name="myForm" ng-submit="addCity()">
+  <form class="form" name="myFormTH" ng-submit="addCity()">
     <div class="form-group">
       <label>City Name</label>
       <input type="text" class="form-control" style="width: 25%;" name="city" ng-model="loc.cityName" required>
 </div>
 <div style="margin-left: 28%;margin-top: -4%;">
         <!-- <button type="submit" class="btn btn-success" ng-disabled="disabled">Register</button> -->
-        <button type="submit" ng-disabled="myForm.$invalid" ng-click="addCity()" class="btn btn-primary">Add City</button>
+        <button type="submit" ng-disabled="myFormTH.$invalid" class="btn btn-primary">Add City</button>
         <button type="submit" ng-disabled="disabled"ng-click="updateCity()" class="btn btn-primary">Update</button>
       </div>
   </form>
@@ -146,7 +149,7 @@
 
 <div role="tabpanel" class="tab-pane fade" id="anna">
 <div class="tab-inner">
-  <form class="form" name="myForm" ng-submit="addTheater()">
+  <form class="form" name="myFormTheater" ng-submit="addTheater()">
     <div>
     <label>Theater Name</label>
     <input style="width:15%;"class="form-control" ng-model="thtre.TheaterName" required/></div>
@@ -164,7 +167,7 @@
              <div style="margin-left:51%;margin-top:-8%;">
             <select id="time" ng-model="thtre.showTime" multiple class="form-control" style="width:15%;" required></select></div>
             <div style="margin-left:62%;margin-top:-5.4%;">
-        <button type="submit" ng-disabled="myForm.$invalid" ng-click="addTheater()" class="btn btn-primary">Add</button>
+        <button type="submit" ng-disabled="myFormTheater.$invalid"  class="btn btn-primary">Add</button>
         <button type="submit"  ng-click="updateTheater()" class="btn btn-primary">Update</button>
       </div>
   </form>
@@ -189,7 +192,7 @@
 
 <div role="tabpanel" class="tab-pane fade" id="wafer">
 <div class="tab-inner">
-<form class="form" name="myForm" ng-submit="addMovie()">
+<form class="form" name="myFormMovie" ng-submit="addMovie(movi)">
   <div><label>Movie Name</label>
   <input class="form-control" ng-model="movi.moviTitle" style="width:15%;" placeholder="Title" required/>
 </div>
@@ -198,7 +201,7 @@
     <input class="form-control" ng-model="movi.moviYear" style="width:15%;" placeholder="Year"/>
 </div>
 <div style="margin-left:29%;margin-top:-3%;">
-<button ng-click="addMovie(movi)" ng-disabled="myForm.$invalid"class="btn btn-primary">Add </button>
+<button ng-click="addMovie(movi)"  ng-disabled="myFormMovie.$invalid" type="submit" class="btn btn-primary">Add </button>
 <button ng-click="updateMovie()"  class="btn btn-primary">Update</button>
 </div>
 </form>
@@ -223,62 +226,66 @@
 
 <div role="tabpanel" class="tab-pane fade" id="Map">
 <div class="tab-inner">
+
+  <form class="form" name="myFormmp" ng-submit="addMap()">
+
+      <div class="form-group" style="width: 16%;">
+        <label>Movie Name</label>
+      <select id="sel" class="form-control" ng-change="moviclick()" name="movie" ng-model="map.Film" required>
+      <option ng-repeat="m in moviList">{{m.moviTitle}}</option>
+      </select></div>
+
+  <div  class="form-group" style="width: 16%;">
+      <label>Language</label>
+  <input type="text" class="form-control" name="lang" ng-model="map.Language" required >
+
+</div>
+
+<div ng-show="selloc" class="form-group"  style="width: 16%;">
+  <label>City</label>
+<select id="selloc" class="form-control" ng-change="th1click()" ng-model="map.City" required>
+<option ng-repeat="loc in loclist">{{loc.cityName}}</option>
+</select></div>
+
+<div ng-show="selthr" class="form-group" style="width: 16%;">
+  <label>Theater</label>
+<select id="selthr" class="form-control" ng-model="map.Hall" ng-change="thclick()"  required>
+<option ng-repeat="th in thtrelist |filter:map.City">{{th.TheaterName}}</option>
+</select></div>
+
+<div ng-show="seldt" style="width: 16%;">
+  <label>Date</label>
+<!-- <input  class="form-control" type="date" id="mapdate"  required> -->
+<!-- <input type="text" id="datepicker"> -->
+ <input id="datepicker" ng-model="ShowDate"/>
+</div>
+
+<div ng-show="selst" style="width:16%;">
+  <label>ShowTime</label>
+<select  class="form-control" id="selecttime" ng-change="selposter()"  ng-model="map.ShowTime"required>
+   <optgroup label="Select" ng-repeat="t in thtrelist| filter:map.Hall">
+     <!-- <<option value="">se</option> -->
+     <option ng-repeat="t in t.showTime" value={{t}}>{{t}}</option>
+   </optgroup>
+ </select>
+ </div>
+
+
+  <div style="margin-left:29%;margin-top:-3%;">
+      <button type="submit" class="btn btn-success" ng-disabled="myFormmp.$invalid">Add</button>
+  <!-- <button id="btn" ng-click="addMap()"  class="btn btn-primary">Add </button> -->
+  <button ng-click="updateMap()"  class="btn btn-primary">Update</button>
+  </div>
+  <div>
+</div>
+  </form>
+
+
+
+
   <table class="table">
-  <thead>
-  <tr>
-  <th>Movie</th>
-  <th>Language</th>
-  <th>City</th>
-  <th>Theater</th>
-  <th>Show time</th>
-
-  <th>From</th>
-  <th>To</th>
-
-  </tr>
-  </thead>
   <tbody>
-  <tr>
 
-  <td>
-  <div class="form-group">
-
-  <select class="form-control" ng-model="map.Film">
-  <option ng-repeat="m in moviList">{{m.moviTitle}}</option>
-
-  </select></div></td>
-  <td>
-  <div class="form-group">
-  <input type="text" class="form-control" ng-model="map.Language">
-  </select></div></td>
-
-  <td>
-  <div class="form-group">
-
-  <select class="form-control" ng-model="map.City">
-  <option ng-repeat="loc in loclist">{{loc.cityName}}</option>
-  </select></div></td>
-  <td>
-  <div class="form-group">
-
-  <select id="thname" class="form-control" ng-model="map.Hall" >
-
-  <option ng-repeat="th in thtrelist |filter:map.City">{{th.TheaterName}}</option>
-  </select></div></td>
-
-  <td>
-  <select class="form-control" id="selecttime" ng-model="map.ShowTime">
-     <optgroup label="Select" ng-repeat="t in thtrelist| filter:map.Hall">
-       <option ng-repeat="t in t.showTime" value={{t}}>{{t}}</option>
-     </optgroup>
-   </select>
-  </td>
-  <td><input class="form-control" type="date" ng-model="map.From"></td>
-  <td><input class="form-control" type="date" ng-model="map.To"></td>
-
-  <td><button ng-click="addMap()" class="btn btn-primary">Add</button></td>
-  <td><button ng-click="updateMap()" class="btn btn-primary">Update</button></td>
-  </tr>
   <tr ng-repeat="map in maplist">
   <td>{{map.Film}}</td>
   <td>{{map.Language}}</td>
@@ -293,7 +300,7 @@
   <td><button ng-click="editMap(map)" class="btn btn-primary">Edit</button></td>
   </tr>
   </tbody>
-  </table>
+</table></div></div>
 </div>
 </div>
 </div>
