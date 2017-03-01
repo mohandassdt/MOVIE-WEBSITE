@@ -10,6 +10,8 @@ var flash = require('connect-flash');//auth
 var session = require('express-session');//auth
 var passport = require('passport');//auth
 var localStrategy = require('passport-local').Strategy;
+var moment = require('moment');
+// moment().format();
 
 // user schema/model
 var User = require('./models/user.js');
