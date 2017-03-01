@@ -22,7 +22,7 @@ var refreshBookin = function () {
   refreshBookin();
 
 
-
+// var now=moment().hour(Number);
 
 //
 // $scope.rt1=function(){
@@ -259,12 +259,6 @@ var uniqueTheat=[];
                    uniqueObj.push($scope.maplist[i]);
                uniqueNames.push($scope.maplist[i].City);
 
-          //      if($scope.maplist[i].City==$scope.book.CityName){
-          //    if(uniqueNames.indexOf($scope.maplist[i].City) === -1){
-          //        uniqueObj.push($scope.maplist[i]);
-          //    uniqueNames.push($scope.maplist[i].City);
-          //  }
-          //    }}
         }
            }}
            console.log(uniqueNames);
@@ -299,36 +293,24 @@ console.log(uniqueHall);
 }}
 }
 }
-  // var refreshMape = function () {
-  //       $http.get('/map/map').success(function (response) {
-  //           console.log('READ IS SUCCESSFUL');
-  //           $scope.maplist = response;
-  //           $scope.map = "";
-  //
-  //           var uniqueNames = [];
-  //              var uniqueObj = [];
-  //
-  //                for(i = 0; i< maplist.length; i++){
-  //                  if(uniqueNames.indexOf(maplist[i].City) === -1){
-  //                      uniqueObj.push(maplist[i])
-  //                  uniqueNames.push(maplist[i].City);
-  //                      }
-  //                  }
-  //
-  //              };
-  //
-  //
-  //       )};
-  //
-  //   refreshMape();
 
+var uniqueShow=[];
+var uniqueShowTime=[];
+$scope.tick=function(){
+  var k;
+  for( k= 0; k< $scope.maplist.length; k++){
 
+if($scope.maplist[k].Film==$scope.movieinfo.Film&&$scope.maplist[k].City==$scope.book.CityName&&$scope.maplist[k].Hall==$scope.book.HallName){
+  if(uniqueShowTime.indexOf($scope.maplist[k].ShowTime) === -1){
+      uniqueShow.push($scope.maplist[k]);
+  uniqueShowTime.push($scope.maplist[k].ShowTime);
+console.log(uniqueHall);
+}}
+}
+}
 
+$scope.Showtime=uniqueShowTime;
 
-      //    document.getElementById("cityNames").innerHTML=uniqueNames;
-      //  alert(uniqueNames);
-      //  console.log(uniqueNames);
-      //  }
 
     var refreshTheat = function () {
           $http.get('/theater/theater').success(function (response) {

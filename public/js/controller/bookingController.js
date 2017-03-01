@@ -3,6 +3,13 @@
 module.exports = function($scope, $http,$log) {
   $scope.booking = 'booking';
 
+ //    $(document).ready(function(){
+ //     $('#datepicker').datepicker({ dateFormat: 'dd, M yy' });
+ //    //  $('#addtime').click(function(){
+ //    //      var data = ($('#hours').val())+" : "+($('#minutes').val())+" "+($('#ampm').val());
+ //    //      $('#restime').append("<option value='"+data+"'>"+data+"</option>");
+ //    //  });
+ // });
   var self = this;
 self.submit = function() {
    console.log('sucesssss form');
@@ -303,22 +310,73 @@ var refreshSho = function () {
     };
 
     refreshMape();
-var i;
+
+    // $scope.sel=function(){
+    //   var j;
+    //   for( j= 0; j< $scope.maplist.length; j++){
+    //
+    // if($scope.maplist[j].Film==$scope.movieinfo.Film&&$scope.maplist[j].City==$scope.book.CityName){
+    //   if(uniqueHall.indexOf($scope.maplist[j].Hall) === -1){
+    //       uniqueTheat.push($scope.maplist[j]);
+    //   uniqueHall.push($scope.maplist[j].Hall);
+    // console.log(uniqueHall);
+    // }}
+    // }
+    // }
+
+
+$scope.selposter=function(){
+  var i;
+  $scope.map.From=document.getElementById("mapdate").value;
+for(i=0;i<$scope.moviList.length;i++){
+  console.log($scope.moviList[i].moviTitle);
+if($scope.map.Film==$scope.moviList[i].moviTitle){
+  $scope.map.Poster=$scope.moviList[i].moviPoster;
+  $scope.map.Year=$scope.moviList[i].moviYear;}}
+  try
+   {
+   for(j=0;j<$scope.maplist.length;j++){
+      if($scope.maplist[j].Film==$scope.map.Film && $scope.maplist[j].Language == $scope.map.Language && $scope.maplist[j].City == $scope.map.City && $scope.maplist[j].Hall==$scope.map.Hall &&  $scope.maplist[j].From==$scope.map.From && $scope.maplist[j].ShowTime== $scope.map.ShowTime)
+     {
+       alert("Already movie is assigned to this showtime...please select other showtime... ");
+         }
+}}  catch(e){}};
+var j;
     $scope.addMap = function () {
+console.log($scope.map);
+  $http.post('/map/map',$scope.map).success(function (response) {
+      console.log(response);
+      console.log("mapping is done");
+refreshMape();
+      $scope.selloc=false;
+          $scope.selthr=false;
+              $scope.seldt=false;
+                $scope.selst=false;
 
-  for(i=0;i<$scope.moviList.length;i++){
-    console.log($scope.moviList[i].moviTitle);
-  if($scope.map.Film==$scope.moviList[i].moviTitle){
-    $scope.map.Poster=$scope.moviList[i].moviPoster;
-    $scope.map.Year=$scope.moviList[i].moviYear;
-
-    console.log($scope.map);
-        $http.post('/map/map',$scope.map).success(function (response) {
-            console.log(response);
-            console.log("CREATE IS SUCCESSFUL");
-            refreshMape();
-        });  }}
-    };
+  });
+};
+// else {
+// if($scope.maplist[j].Film==$scope.map.Film && $scope.maplist[j].Language == $scope.map.Language && $scope.maplist[j].City == $scope.map.City && $scope.maplist[j].Hall==$scope.map.Hall &&  $scope.maplist[j].From==$scope.map.From && $scope.maplist[j].ShowTime== $scope.map.ShowTime)
+// {
+//   alert("Already movie is assigned to this showtime...please select other showtime... ");
+//     }
+//       else {
+//
+//               $http.post('/map/map',$scope.map).success(function (response) {
+//                   console.log(response);
+//                   console.log("mapping is done");
+// refreshMape();
+//                   $scope.selloc=false;
+//                       $scope.selthr=false;
+//                           $scope.seldt=false;
+//                             $scope.selst=false;
+//
+//               });
+//       }}
+//       }
+//       }
+//       catch(e){}
+//     };
 
     $scope.removeMap = function (id) {
         console.log(id);
@@ -343,5 +401,98 @@ var i;
             refreshMape();
         })
     }
+    $scope.selloc=false;
+        $scope.selthr=false;
+            $scope.seldt=false;
+              $scope.selst=false;
+$scope.moviclick=function(){
+  var len=document.getElementById("sel").value;
+  if(len.length>0){
+  $scope.selloc=true;
 
+
+  }
+  else{
+    $scope.selloc=false;
+  }
+}
+
+$scope.th1click=function()
+{
+  var len=document.getElementById("selloc").value;
+  if(len.length>0){
+    $scope.selthr=true;
+}}
+
+$scope.thclick=function()
+{
+  var len=document.getElementById("selthr").value;
+  if(len.length>0){
+    $scope.seldt=true;
+      $scope.selst=true;
+}}
+// document.getElementById("btn").disabled=false;
+$scope.selshow=function()
+  {
+$scope.map.From=document.getElementById("mapdate").value;
+console.log($scope.maplist);
+console.log($scope.map.Film);
+console.log($scope.map.Language);
+console.log($scope.map.City);
+console.log($scope.map.Hall);
+console.log($scope.map.From);
+console.log($scope.map.ShowTime);
+var i;
+  try
+   {
+   for(i=0;i<=$scope.maplist.length;i++){
+
+if($scope.maplist[i].Film==$scope.map.Film && $scope.maplist[i].Language == $scope.map.Language && $scope.maplist[i].City == $scope.map.City && $scope.maplist[i].Hall==$scope.map.Hall &&  $scope.maplist[i].From==$scope.map.From && $scope.maplist[i].ShowTime== $scope.map.ShowTime)
+{
+  alert("Already movie is assigned to this showtime... ");
+  alert("please select other showtime...");
+//document.getElementById("selecttime").innerHTML="";
+// document.getElementById("selecttime").value="";
+// $("#btn").click(function(){
+       //alert('clicked!');
+      //  $('#selecttime').empty();
+// emptyst();
+
+// var select = document.getElementById("selecttime");
+// // select.options.length = 0;
+// select.options="";
+  //  });
+  }
+}
+}
+catch(e){}
+};
+
+$('#selecttime').change(function(){
+  $scope.map.From=document.getElementById("mapdate").value;
+  console.log($scope.maplist);
+  console.log($scope.map.Film);
+  console.log($scope.map.Language);
+  console.log($scope.map.City);
+  console.log($scope.map.Hall);
+  console.log($scope.map.From);
+  console.log($scope.map.ShowTime);
+  var i;
+    try
+     {
+     for(i=0;i<=$scope.maplist.length;i++){
+
+  if($scope.maplist[i].Film==$scope.map.Film && $scope.maplist[i].Language == $scope.map.Language && $scope.maplist[i].City == $scope.map.City && $scope.maplist[i].Hall==$scope.map.Hall &&  $scope.maplist[i].From==$scope.map.From && $scope.maplist[i].ShowTime== $scope.map.ShowTime)
+  {
+    alert("Already movie is assigned to this showtime... ");
+    alert("please select other showtime...");
+    $('#selecttime').prop('selectedIndex',0);
+  }
+}
+}
+catch(e){}
+});
+// function emptyst() {
+// $("#selecttime").empty();
+// }
 };
