@@ -15,10 +15,8 @@
 <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
 <!-- date picker -->
-<script type="text/javascript" src="js/jquery.min.js"></script>
-  <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
- <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
- <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+
 <!-- end date picker -->
 <!-- @import url(//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css); -->
 
@@ -56,49 +54,18 @@ module.exports = function($scope, $http) {
 
     <ul class="nav navbar-nav navbar-right" style="margin-right: 39px;">
 
-<li class="activate" style="margin-right:46px;"><a href="#/register"><span class="glyphicon glyphicon-user"></span>REGISTER</a></li>
+<!-- <li class="activate" style="margin-right:46px;"><a href="#/register"><span class="glyphicon glyphicon-user"></span>REGISTER</a></li> -->
 
       <li> <div ng-controller="BookingController as vm" >
                       <a ng-if="vm.IsShow" ng-show="adminpg" href="#/booking">Admin</a></div>
 
-                    </li>
-
-                    <!-- <div ng-controller="AdminController as vm" >
-                        <a ng-if="vm.IsShow" ng-show="adminpg" href="#/admin">Admin</a>
-                        </div> -->
-
-                     <li>
                         <div ng-controller="LoginController as vm" style="margin-left=-194%;margin-top:25%;">
                         <div ng-if="!vm.IsShow">
                         <a ng-click="vm.IsShow=!vm.IsShow" href="#/login" style="color:white"><span class="glyphicon glyphicon-log-in"></span> LOG IN</button>
                         </div>
-                        <div ng-if="vm.IsShow" style="margin-left:-20%;margin-top:-9%;" >
+                        <div  ng-if="vm.IsShow" style="margin-left:-20%;margin-top:-9%;" >
               <a href="#/home" ng-click="vm.IsShow=!vm.IsShow" style="color:white"><span class="glyphicon glyphicon-log-out"></span> LOGOUT</a>
-      <!-- <li ng-controller="AdminController as vm" >
-                            <a ng-if="vm.IsShow" ng-show="adminpg" href="#/booking">Admin</a>
-
-                          </li> -->
-
-  <!-- <li class="activate"><a href="#/register"><span class="glyphicon glyphicon-user"></span>REGISTER</a></li>
-  <li ng-controller="LoginController as vm" style="margin-right:29px;" ng-if="!vm.IsShow">
-    <a ng-click="vm.IsShow=!vm.IsShow" href="#/login" class="link"><span class="glyphicon glyphicon-log-in"></span> LOGIN</a></li>
-
-
-  <li style="margin-right:5px;" ng-if="vm.IsShow">
-    <a href="#/home" ng-click="vm.IsShow=!vm.IsShow" class="link"><span class="glyphicon glyphicon-log-in"></span> LOGOUT</a></li> -->
-
-<!--
-    <div ng-controller="AdminController as vm" >
-                          <a ng-if="vm.IsShow" ng-show="adminpg" href="#/admin">Admin</a>
-                          </div>
-                        </li>
-                       <li>
-                          <div ng-controller="LoginController as vm" style="margin-left: 29%;margin-top: 41%;">
-                          <div ng-if="!vm.IsShow">
-                          <a ng-click="vm.IsShow=!vm.IsShow" href="#/login" class="link">Login</button>
-                          </div>
-                          <div ng-if="vm.IsShow" style="margin-left: 28%;margin-top: 35%;" >
-                <a href="#/home" ng-click="vm.IsShow=!vm.IsShow" class="link">Logout</a> -->
+</li>
 
 
     </ul>
@@ -118,7 +85,17 @@ module.exports = function($scope, $http) {
          <img src="img/l2.png" class="img-circle" alt="twit" width="80" height="90">
          <img src="img/l3.png" class="img-circle" alt="insta" width="80" height="80">
        </div>
-<h4 style="text-align:center;color:white">Thank You!!!</h4>
+<h4 style="text-align:center;color:white">Thank You!!!</h4></div>
+
+<p style="color:white;margin: 22px 375px 31px;">
+
+                                       Copyright 2017 © MeraFilm.com.All Rights Reserved.
+               The content and images used on this site are copyright protected and copyrightsvests with the respective owners.
+               Theusage of the content and  images on this website is intendedto promote the works and no endorsement of the
+                              artist shall be implied. Unauthorized use is prohibited and punishable by law.
+</p>
+
+
        </footer>
 
 
