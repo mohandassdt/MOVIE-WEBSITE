@@ -98,11 +98,7 @@ $scope.book.seatnumbers=selected;
 }
 };
 
-$scope.d=function(){
-  date=document.getElementById("datebook").value;
-// alert(date);
-console.log(date);
-}
+
 //
 // $scope.e=function(){
 //   cityNmae=document.getElementById("citybook").value;
@@ -117,7 +113,7 @@ $scope.add =function()
 {
       // $scope.seat = true;
 
-$scope.book.Day=date;
+// $scope.book.Day=date;
   $scope.book.Title=$scope.movieinfo.Film;
 console.log($scope.book.Title);
 console.log($scope.book.CityName);
@@ -201,7 +197,7 @@ while(arr.length < 1){
 }
 $scope.book.bookingid= arr;
 console.log($scope.book.bookingid);
-  $scope.book.Title=$scope.movieinfo.moviTitle;
+  $scope.book.Title=$scope.movieinfo.Film;
 
 $scope.book.seatnumbers=selected;
 // $scope.book.seatnumber=
@@ -282,6 +278,9 @@ console.log($scope.book.CityName);
     refreshMape();
 
 $scope.sel=function(){
+  // var time=moment('01/01/2016', 'MM/DD/YYYY')
+// alert(moment("2017-03-2T12:14:00").format("hh:mm:ss a"));
+
   var j;
   for( j= 0; j< $scope.maplist.length; j++){
 
@@ -297,17 +296,28 @@ console.log(uniqueHall);
 var uniqueShow=[];
 var uniqueShowTime=[];
 $scope.tick=function(){
-  var k;
+  $scope.book.Day=document.getElementById("datebook").text;
+
+  console.log($scope.book.Day);
+  var dt=[];
+  var k,d,j;
+  d = new Date(new Date().getTime()).toLocaleTimeString();
+
   for( k= 0; k< $scope.maplist.length; k++){
 
-if($scope.maplist[k].Film==$scope.movieinfo.Film&&$scope.maplist[k].City==$scope.book.CityName&&$scope.maplist[k].Hall==$scope.book.HallName){
+  if($scope.maplist[k].Film==$scope.movieinfo.Film&&$scope.maplist[k].City==$scope.book.CityName&&$scope.maplist[k].Hall==$scope.book.HallName&&$scope.maplist[k].From==$scope.book.Day)
+  {
+if($scope.maplist[k].ShowTime>d)
+{
   if(uniqueShowTime.indexOf($scope.maplist[k].ShowTime) === -1){
-      uniqueShow.push($scope.maplist[k]);
-  uniqueShowTime.push($scope.maplist[k].ShowTime);
-console.log(uniqueHall);
-}}
+    uniqueShowTime.push($scope.maplist[k].ShowTime);
+      console.log(uniqueShowTime);
+
+}
+
 }
 }
+}};
 
 $scope.Showtime=uniqueShowTime;
 
@@ -322,56 +332,6 @@ $scope.Showtime=uniqueShowTime;
       }
 
       refreshTheat();
-      /////////////////////////
-
-      // (function() {
-      // 	 function IDGenerator() {
-      //
-      // 		 this.length = 4;
-      // 		 this.timestamp = +new Date;
-      //
-      // 		 var _getRandomInt = function( min, max ) {
-      // 			return Math.floor( Math.random() * ( max - min + 1 ) ) + min;
-      // 		 }
-      //
-      // 		 this.generate = function() {
-      // 			 var ts = this.timestamp.toString();
-      // 			 var parts = ts.split( "" ).reverse();
-      // 			 var id = "";
-      //
-      // 			 for( var i = 0; i < this.length; ++i ) {
-      // 				var index = _getRandomInt( 0, parts.length - 1 );
-      // 				id += parts[index];
-      // 			 }
-      //
-      // 			 return id;
-      // 		 }
-      //
-      //
-      // 	 }
-      //
-      //
-      // 	 document.addEventListener( "DOMContentLoaded", function() {
-      // 		var btn = document.querySelector( "#generate" ),
-      // 			output = document.querySelector( "#output" );
-      //
-      // 		btn.addEventListener( "click", function() {
-      // 			var generator = new IDGenerator();
-      // 			output.innerHTML = generator.generate();
-      //
-      // 		}, false);
-      //
-      // 	 });
-      //
-      //
-      //  })();
-
-
-
-
-
-
-
 
 
 

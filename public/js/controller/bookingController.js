@@ -260,11 +260,8 @@ var refreshSho = function () {
        });
 
   $scope.addShow = function () {
-//     var app = angular.module('movieApp', []);
-// app.controller('myCtrl', function($scope) {
-//     $scope.count = 0;
-// });
-      console.log($scope.tim);
+// $scope.tim.showTime=document.getElementById("showt").value;
+      // console.log($scope.tim);
       $http.post('/showt/showt', $scope.tim).success(function (response) {
           console.log(response);
           console.log("CREATE IS SUCCESSFUL");
@@ -298,7 +295,7 @@ var refreshSho = function () {
 
 
 
-///////////////////mappingggggggggggg
+///////////////////mappingggggggggggga
 
   var refreshMape = function () {
         $http.get('/map/map').success(function (response) {
@@ -311,18 +308,28 @@ var refreshSho = function () {
 
     refreshMape();
 
-    // $scope.sel=function(){
-    //   var j;
-    //   for( j= 0; j< $scope.maplist.length; j++){
-    //
-    // if($scope.maplist[j].Film==$scope.movieinfo.Film&&$scope.maplist[j].City==$scope.book.CityName){
-    //   if(uniqueHall.indexOf($scope.maplist[j].Hall) === -1){
-    //       uniqueTheat.push($scope.maplist[j]);
-    //   uniqueHall.push($scope.maplist[j].Hall);
-    // console.log(uniqueHall);
-    // }}
-    // }
-    // }
+    $scope.f=function()
+  {
+    var currentTime = new Date()
+    var month = currentTime.getMonth() + 1
+  var day = currentTime.getDate()
+  var year = currentTime.getFullYear()
+  var cvalue=year + "/" + month + "/" + day;
+  alert(cvalue);
+  console.log(cvalue);
+    var dvalue=document.getElementById("mapdate").value;
+    alert(dvalue);
+    console.log(dvalue);
+    if(cvalue < dvalue)
+    {
+      alert("future date");
+    }
+    else
+    {
+      alert("past date");
+    }
+
+  }
 
 
 $scope.selposter=function(){
@@ -342,8 +349,22 @@ if($scope.map.Film==$scope.moviList[i].moviTitle){
          }
 }}  catch(e){}};
 var j;
+
+
+
     $scope.addMap = function () {
 console.log($scope.map);
+var t;
+
+for(t=0;t<$scope.moviList.length;t++){
+   if($scope.moviList[t].moviTitle==$scope.map.Film){
+$scope.map.Poster=$scope.moviList[t].moviPoster;
+$scope.map.Year=$scope.moviList[t].moviYear;
+
+      }
+}
+
+
   $http.post('/map/map',$scope.map).success(function (response) {
       console.log(response);
       console.log("mapping is done");
@@ -384,12 +405,21 @@ refreshMape();
             console.log(response);
             console.log('DELETED SUCCESSFULLY');
             refreshMape();
+            $scope.selloc=false;
+                $scope.selthr=false;
+                    $scope.seldt=false;
+                      $scope.selst=false;
         });
     };
 
     $scope.editMap = function (id) {
+      $scope.selloc=true;
+      $scope.selthr=true;
+          $scope.seldt=true;
+            $scope.selst=true;
          $http.get('/map/map/' + id._id).success(function (response) {
             $scope.map = response[0];
+
         });
     };
 
@@ -399,8 +429,19 @@ refreshMape();
         $http.put('/map/map/' + $scope.map._id, $scope.map).success(function (response) {
             console.log(response);
             refreshMape();
+            $scope.selloc=false;
+                $scope.selthr=false;
+                    $scope.seldt=false;
+                      $scope.selst=false;
         })
     }
+
+    // $scope.dat=function(){
+    //   date=document.getElementById("datepicker").value;
+    // // alert(date);
+    // console.log(date);
+    // }
+
     $scope.selloc=false;
         $scope.selthr=false;
             $scope.seldt=false;
@@ -431,7 +472,7 @@ $scope.thclick=function()
     $scope.seldt=true;
       $scope.selst=true;
 }}
-// document.getElementById("btn").disabled=false;
+
 $scope.selshow=function()
   {
 $scope.map.From=document.getElementById("mapdate").value;
@@ -451,17 +492,7 @@ if($scope.maplist[i].Film==$scope.map.Film && $scope.maplist[i].Language == $sco
 {
   alert("Already movie is assigned to this showtime... ");
   alert("please select other showtime...");
-//document.getElementById("selecttime").innerHTML="";
-// document.getElementById("selecttime").value="";
-// $("#btn").click(function(){
-       //alert('clicked!');
-      //  $('#selecttime').empty();
-// emptyst();
 
-// var select = document.getElementById("selecttime");
-// // select.options.length = 0;
-// select.options="";
-  //  });
   }
 }
 }
